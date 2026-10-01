@@ -1,0 +1,25 @@
+# NX789J EU firmware input manifest
+# generated: 2026-10-01 (extraction run)
+file: NX789J_EU_V2.0.0B05MR1_update.zip
+size_bytes: 8733027332
+sha256: 07eaf8be5036f5b7192294c379e46d0b947f9e6114c5c437c6951211a12d5027
+source_url: https://rom.download.nubia.com/Europe/NX789J/V2.0.0B05MR1/update.zip
+source_page: https://redmagic.gorgias.help/en-US/redmagic-10-pro-2430571 (label V11.0.05MR1, 2026-07-09)
+cdn_last_modified: Thu, 09 Jul 2026 01:36:22 GMT
+zip_listing:
+  META-INF/com/android/metadata (703)
+  META-INF/com/android/metadata.pb
+  apex_info.pb (1345)
+  care_map.pb (983)
+  payload.bin (8733012041)
+  payload_properties.txt (156)
+  build.prop
+  META-INF/com/android/otacert + MANIFEST.MF + CERT.SF + CERT.RSA
+ota-type: AB (FULL — no pre-build in metadata)
+pre-device: NX789J
+post-build fingerprint: nubia/NX789J-EEA/NX789J:16/BQ2A.250705.001-BP2A.250605.031.A3/20260519.002456:user/release-keys
+display id: RedMagicOS11.0.5MR1_EU  <-- matches owner device build
+build date: Tue May 19 00:26:22 CST 2026 (utc 1779121582)
+security patch: 2026-04-01, SDK 36 (Android 16)
+payload FILE_SIZE: 8733012041, FILE_HASH (base64): vjKe4GuPtA/fimu8Y+oWXNzMheFV07wsZAxcnU946sg=
+extraction_note: Info-ZIP unzip trips zipbomb detector on this file; use 7z (see scripts/02-extract-ota.sh)

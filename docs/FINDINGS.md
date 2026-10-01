@@ -88,7 +88,60 @@ Each entry records source + date + relevance (NX789J-native vs sibling).
 - NEVER flash RM11 binaries to NX789J. Port concepts after NX789J-stock verification.
 - Relevance: sibling (NX809J).
 
-## F-13 — Stock dump mirrors exist for static analysis (PLAUSIBLE, 2026-10-01)
+## F-14 — IronShing LOS 23.2 hybrid tree: approach-C reference, NOT our architecture (VERIFIED, 2026-10-01)
 
-- Android Dumps GitLab `nubia/nx789j` referenced from XDA (qssi_64-user-15-...RedMagicOS10.0.15_NX789J_GB). Not yet inspected (Q-08).
-- ZTE opensource portal hosts kernel tarballs (NX769J precedent); NX789J kernel source not yet located (Q-09).
+- Source: `sources/android_device_nubia_NX789J`, branch lineage-23.2, single commit 9b1b3df (2026-09-13).
+- Design: builds system/system_ext/product from LineageOS 23.2, rides STOCK RMOS 11.0.13MR vendor/odm/dlkm + stock boot chain (6.6.92 GKI); hybrid super assembled at flash time; EDL flash. Status = bring-up/bootstrap only (diag logger, wifi glue) — no working triggers/Game Space/fingerprint.
+- Stock facts reused: vendor is Android 15 / board API 202404 GRF-frozen while system is Android 16 (same seam LOS 23.2 needs); stock ships **EROFS** on all 7 logical partitions; vendor security patch 2026-05-01; super 16 GiB; recovery 100 MB block device; codename **aston**; CN variant **NX789S (overclocked)**; cameras OV16E1Q(UDC)/OV50E40/OV50D40/OV02F10; Goodix gf96xx; ZTE kernel tree has J/S config select; kernel source opensource.ztedevices.com → NX789S tarball (6.6.30, Kleaf/Bazel, ~2 GB); upstream base LOS oneplus/sm8750-common + dodge.
+- Consequence for us: validates vendor seam + EROFS + partition sizes for our work; confirms NO working native ROM preserves the REDMAGIC stack (approach C/D would need to reimplement Game Space/triggers/UDFPS-HBM from F-04/F-05) → strengthens approach-A preference.
+- Relevance: NX789J-native (bring-up, unverified boot).
+
+## F-15 — Nubia OTAs are DELTA payloads; J vs S hardware split (STRONG, wiki + trees, 2026-10-01)
+
+- Wiki rom-firmware: update.zips (~4 GB class) are incremental binary patches requiring the exact predecessor; local-install fails at payload_properties (~16 KB) otherwise; fresh-state flashing needs extracting/patching ~42 partitions. OUR EU download is 8.73 GB — larger; full-vs-delta to be determined from payload_properties after download (extraction may need source partitions if delta — risk for Phase 3, mitigated by payload-dumper-go + lpunpack already staged).
+- Region/variant: EU/Global/EEA/Asia share NX789J; CN targets NX789S (overclocked SoC bin). Same kernel tree, config-selected. HalabTech "GEN_CN_NX789J" filenames therefore need extra scrutiny (Q-06): CN packages may actually be NX789S-targeted despite the name.
+- Official EU full-version URL table captured (V1.0.0B10MR1 … V10.0.14, plus our V2.0.0B05MR1) — see SOURCES FW-01…FW-06.
+- Relevance: NX789J-native.
+
+## F-16 — Free RM10 unlock exists since May 2026, but no RM10 version matrix (STRONG, wiki 2026-08-29 + XDA, 2026-10-01)
+
+- Toolbox 1.2.3+ → 1.2.4 (May 2 first free RM10 unlocks) → 1.2.7.7 stable → 1.2.8-beta2; native-Linux bkerler/edl port WIP ("do not use yet"); GhostLock CVE-2026-43499 temp-root supports RM10 shipping kernel.
+- No published RM10 firmware↔unlock-compatibility matrix ("has to be an older version" — dev-reverse). RM11 matrix (11.0.18MR1_GB last fully-working incl. fingerprint fix; GBL patched in .19MR2; Aug-2026 abl+efisp downgrade bypass) is SIBLING-ONLY.
+- EDL/firehose is the only write path (no working fastboot on stock); losing EDL access = losing all flashing/root — test plan must treat EDL availability as precondition.
+- Owner device: NO action. Owner advisory (separate message): do not update, consider freezing updater.
+- Relevance: NX789J-native (procedure), sibling (matrix).
+
+## F-17 — Internal wiki contradiction on efisp/recovery (VERIFIED disagreement, 2026-10-01)
+
+- partitions-avb.md: NX789J (SM8750) has NO efisp partition (121-entry by-name dump from 11.0.4MR1_GB lists ztecfg/uefi/uefivarstore, no efisp) → RM11 efisp procedures (Option 18, abl+efisp downgrade) do NOT port verbatim.
+- reverse-engineering.md (same wiki): "both share the efisp partition and ABL behavior… mechanism ports". CONFLICT preserved; partitions-avb has the stronger evidence (device dump). Do not assume efisp on NX789J.
+- Similarly: partitions-avb says recovery bundled into boot/init_boot (no dedicated recovery), but TWO independent trees (OrangeFox + IronShing BoardConfig: recovery 104857600) + working dd-to-recovery_a/b flash method prove the recovery_a/b block devices exist and boot. Likely: partition exists, stock boot flow ignores it. Preserved as Q-15.
+- Relevance: NX789J-native.
+
+## F-18 — Vendor gaming stack lives in vendor/ (STRONG, stock blob list, 2026-10-01)
+
+- Source: `research/vendor-blob-signals.md` filtered from reminon/device_NX789J proprietary-files.txt (base: RedMagicOS10.0.15_NX789J_GB A15 vendor).
+- `vendor/bin/fan_service` + init_fan_service.rc; `poweropt-service` + libgamepoweroptfeature/liboffscreenpoweroptfeature; aw_fan0-4 + fan_led/m_led/touch_led/aw22xxx firmware; nubia_all_rgb_* blobs; AAC Richtap haptics (odm config); `ztecmdaidl-service` + ifaaaidl-service + Goodix gf95xx HAL/libs/firmware; KeyMint/Gatekeeper SPU; consumerir.zte; zte radio/modem/subsys vendor libs; init.zte.perf.rc; touchscreen_zte.rc; multi-panel display calibs (CSOT nt37801 + Visionox r66451/vtdr6130).
+- Consequence: approach A (keep vendor/odm) inherits fan/power/RGB/haptics/fingerprint/IR/radio daemons automatically — the core argument for A over C/D. System-side REDMAGIC APKs (Game Space) + their GMS edges remain Phase 5 work.
+- Relevance: NX789J-native (A15 GB vendor; re-verify on EU A16 after extraction).
+
+## F-13 — Stock dump mirrors + kernel source located (STRONG, 2026-10-01)
+
+- dumps.tadiphone.dev/dumps/nubia/nx789j (Android Dumps GitLab) exists but predates 10.0.18 and looks incomplete (wiki rom-firmware, first-hand report). Not yet inspected (Q-08).
+- Kernel source: opensource.ztedevices.com → NX789S tarball (Linux 6.6.30, Kleaf, ~2 GB, J+S configs). RM10 tree buildable per wiki (2026-08-09 check); reminon kernel GitHub repos are EMPTY (manifest only) — do not use. Tarball fetch deferred until needed for driver/sysfs reference (Q-09).
+
+## F-19 — mKonic userspace HW-control app confirms NX789J sysfs (VERIFIED, 2026-10-01)
+
+- Source: `sources/Redmagic-Control-Center` (mKonic fork, RM10-targeted; strings extracted from Kotlin sources 2026-10-01).
+- NX789J-native nodes: fan `/sys/kernel/fan/{fan_enable,fan_speed_level,fan_speed_pwm,fan_speed_count}`; triggers `/sys/class/leds/sar0|sar1/mode_operation` + input devices `nubia_tgk_aw_sar0_ch0/1_ch0` (resolves Q-02 trigger-sysfs half); LEDs `aw22xxx_led/{effect,cfg}`; micropump `/proc/driver/micropump/{enable,freq,speed,mode}`; slider `/proc/driver/slider`; vibrator `/sys/class/leds/vibrator/*`; thermal zones 0-3.
+- No charge-separation/bypass node found in this app — remains Phase 6 stock-vendor work.
+- Relevance: NX789J-native (app targets RM10; stock-image cross-check still required).
+
+## F-20 — Phase 5 static verdict: REDMAGIC stack is GMS-clean; GMS is bounded (VERIFIED, 2026-10-01)
+
+- Method: aapt/apksigner inventory (574 APKs) + strict descriptor-level dex scan (scripts/20-gms-scan.py) over 104 ZTE/Nubia/RedMagic APKs + permission/allowlist/sysconfig/init review.
+- Privileged Google core = 26 APKs (GmsCore+sidecar, GSF, Phonesky, Google SUW, PartnerSetup, OneTimeInitializer, ConfigUpdater, Velvet, ASI/PCS, Dialer, Messages, Turbo, Wellbeing, etc.) + NetworkStack/DocumentsUI/PackageInstaller/Tag (need AOSP swaps) + ~53 Google apps + ~15 overlays. No GMS init services; framework sysconfig Google-free; Mainline APEX stay.
+- Gaming/hardware REDMAGIC packages show ZERO GMS class refs and ZERO Google permissions: GameSpace, GamePi, KeyMapCenter, NBFan, ChargeSeparation, ColorFulLight, GameFloat, PluginTrigger, ProjectionScreen, VirtualGameHandle, Thermal×2, PowerSaveMode, FingerprintService, SetupWizard_MFV (uses GSETTINGS perms — graceful unknown-perm post-GSF), SystemUI/Launcher/Telecom/SettingsProvider/Camera/ServiceManager.
+- Dirty exceptions: ZBoard (heavy — replace), NBBrowser/Weather/Cleanup/Booking (remove), Wallpapers/PhotoEditor (remove/test), GameAssist (sign-in+MLKit — test), Settings_MFV (sign-in+FLP client lib — test), ZteAigc (sign-in — test), XRLauncher (play-asset — test).
+- Artifacts: package-analysis/EU-google-removal-list.md, EU-redmagic-survival-list.md, EU-redmagic-gms-scan.tsv; docs/ARCHITECTURE.md recommends Approach A.
+- Relevance: NX789J-native, owner-build exact. Runtime confirmation still required (static ≠ proof of no crash-loop).

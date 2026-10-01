@@ -31,8 +31,9 @@ sha256_of() { sha256sum "$1" | awk '{print $1}'; }
 fs_magic() {
   local f="$1" magic
   magic="$(xxd -p -l 16 "$f" 2>/dev/null | tr -d ' \n')"
-  case "$magic" in
-    e2e1f5e0*) echo "erofs" ;;
+  magic1024="$(xxd -p -s 1024 -l 16 "$f" 2>/dev/null | tr -d ' \n')"
+  case "$magic:$magic1024" in
+    e2e1f5e0*:*|*:e2e1f5e0*) echo "erofs" ;;
     3aff26ed*) echo "sparse" ;;
     00000000000000000000000000000000*) echo "empty?" ;;
     *)

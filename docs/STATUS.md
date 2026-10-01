@@ -11,9 +11,17 @@ Last updated: 2026-10-01 (UTC). Owner build: RedMagicOS 11.0.5MR1 EU, Android 16
 - CN leads named but NOT yet acquired: `GEN_CN_NX789JV1.0.0B24_SD_WO_ERA.zip`, `GEN_CN_NX789JV1.0.0B12MR1_SD_WO_ERA.zip` (HalabTech listing; B12MR1 mirror is Baidu Pan — effectively inaccessible; trust/provenance unverified).
 - Global (NEEA) Android-15-era OTA known: `GEN_NEEA_NX789JV1.0.0B13MR1_SD_WO_ERA` at `rom.download.nubia.com/Europe&Asia/NX789J/V10.0.13/update.zip` (not yet downloaded).
 
-**Phase 3 (extraction pipeline): STARTED.** Tooling survey done; scripts to be written under `scripts/` (payload-dumper-go, erofs-utils, avbtool, lpunpack/super handling).
+**Phase 3 (extraction pipeline): DONE.** payload-dumper-go + erofs-utils built local; scripts/ verify/extract/inventory/manifest/gms-scan all working.
 
-**Phases 4–10: NOT STARTED** (blocked on firmware download + extraction).
+**Phase 4 (EU firmware): DONE.** Official EU full OTA (RedMagicOS11.0.5MR1_EU == owner build, SHA-256 07eaf8be…) extracted: 44 partition images, 7 EROFS logical partitions, 574-APK inventory, per-file manifests, AVB chain mapped (vbmeta→boot/recovery/vbmeta_system; vbmeta_system→pvmfw/product/system/system_ext; vbmeta→dtbo/init_boot/vendor_boot/odm/system_dlkm/vendor/vendor_dlkm).
+
+**Phase 5 (Google graph): STATIC DONE.** 26 priv Google APKs + ~53 apps + ~15 overlays inventoried for removal; REDMAGIC gaming stack GMS-clean; 12 dirty exceptions triaged. Artifacts in package-analysis/.
+
+**Phase 6 (REDMAGIC graph): WELL UNDERWAY.** UDFPS protocol, triggers (sar0/1 + KEY_F7/F8 + nubia_game_scene), fan/LED/micropump/slider sysfs, charge-separation Settings keys all mapped statically.
+
+**Phase 7 (architecture): INTERIM DECISION — Approach A** (rebuilt EU REDMAGIC OS). See docs/ARCHITECTURE.md.
+
+**Phases 8–10: NOT STARTED** (staging script → rebuild pipeline → static validation → test plan for review).
 
 ## Key results so far
 

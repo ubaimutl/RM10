@@ -20,4 +20,4 @@
 
 - Q-18 — AOSP donor sourcing: fetch AOSP GSI (phh/LineageOS) + chromium-webview prebuilt; verify hashes, package names, SDK-36 compat, GMS-scan clean. Status: TODO (plan in research/aosp-replacements.md).
 
-- Q-19 — EROFS rebuild: mkfs.erofs available (built); determine fs_config + file_contexts + fsverity/hash-tree strategy for rebuilt system/system_ext/product; vbmeta re-sign flow (test key, flags 0x78). Status: TODO.
+- Q-19 — EROFS rebuild: mkfs.erofs available (built); determine fs_config + file_contexts + fsverity/hash-tree strategy for rebuilt system/system_ext/product; vbmeta re-sign flow (test key, flags 0x78). FEASIBILITY PROBE 2026-10-01: PASS — mkfs.erofs 1.9.4 (lz4/lz4hc/lzma/deflate/zstd) built; fs_config_dirs/files present (system+vendor+dlkm); plat_file_contexts + vendor_file_contexts + CIL policy present. Status: READY TO PROTOTYPE.

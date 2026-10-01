@@ -1,0 +1,9 @@
+product/overlay/ZBoard_Global_Overlay_RedMagic/ZBoard_Global_Overlay_RedMagic.apk
+system/system/app/NBBrowser_EEA/NBBrowser_EEA.apk
+system/system/app/PlayAutoInstallConfig/PlayAutoInstallConfig.apk
+system/system/app/StorageCleanup/StorageCleanup.apk
+system/system/app/Weather_ZTE/Weather_ZTE.apk
+system/system/etc/PAI/PlayAutoInstallConfig-pai/PlayAutoInstallConfig-pai.apk
+system/system/partner-app/NubiaBooking/NubiaBooking.apk
+system/system/priv-app/ZBoard_Global/ZBoard_Global.apk
+system_ext/overlay/Weather_ZTE_Overlay/Weather_ZTE_Overlay.apk

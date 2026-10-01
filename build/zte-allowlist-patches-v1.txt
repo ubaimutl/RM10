@@ -1,0 +1,9 @@
+# Patches to ZTE allowlists required by the GMS-off stage (v1).
+# These files STAY (they also grant ZTE packages); only the stanzas/lines
+# naming removed packages are deleted at rebuild time. Format: file | action | match
+# Actions: DEL_BLOCK:<start-regex>:<end-regex> | DEL_LINE:<regex>
+system/system/etc/permissions/privapp-permissions-platform-zte.xml | DEL_BLOCK:<privapp-permissions package="com.google.android.gsf.login">:</privapp-permissions> | gsf.login stanza (package removed)
+system/system/etc/permissions/privapp-permissions-platform-zte.xml | DEL_BLOCK:<privapp-permissions package="com.android.vending">:</privapp-permissions> | vending stanza (Phonesky removed)
+system/system/etc/sysconfig/hiddenapi-package-whitelist-zte.xml | DEL_LINE:package="com.zte.weather" | weather removed
+system/system/etc/sysconfig/hiddenapi-package-whitelist-zte.xml | DEL_LINE:package="com.zte.storagecleanup" | storagecleanup removed
+system/system/etc/sysconfig/hiddenapi-package-whitelist-zte.xml | DEL_LINE:package="com.zte.nubrowser" | nubrowser removed

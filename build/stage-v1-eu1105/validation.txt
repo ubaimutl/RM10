@@ -1,0 +1,19 @@
+# validation build/stage-v1-eu1105
+
+## removed files: 105, removed packages: 86
+
+## 1. surviving overlays targeting removed packages
+  OK: no surviving overlay targets a removed package
+
+## 2. permission/sysconfig refs to removed packages
+  0 refs (cleanup recommended, harmless if left):
+
+## 3. init.rc service binaries removed by this stage
+  OK: no init service points at a removed binary
+  info: 60 service refs dangling in STOCK already (apex/stale, untouched by stage)
+
+## 4. bytes removed per top partition
+  product: 2493.6 MB
+  system: 276.2 MB
+  system_ext: 24.5 MB
+  vendor: 0.0 MB

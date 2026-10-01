@@ -1,0 +1,16 @@
+# AOSP transplant map v1 — donor GSI -> candidate tree.
+# Format: donor-file | candidate-relative-path | donor-package | replaces
+# Donor: firmware/aosp_arm64-BP2A.250605.031.A3-gsi.zip
+#   SHA-256 8227714351abe504eb27920d0e95c1b672722d2b7c9c9610dad2aee768624add
+#   (Google Android 16 GSI, no GMS, same AOSP base as REDMAGIC build)
+donor:system_priv-app_NetworkStack_NetworkStack.apk | system/system/priv-app/NetworkStack/NetworkStack.apk | com.android.networkstack | system/system/priv-app/NetworkStackGoogle/NetworkStackGoogle.apk
+donor:system_priv-app_DocumentsUI_DocumentsUI.apk | system/system/priv-app/DocumentsUI/DocumentsUI.apk | com.android.documentsui | system/system/priv-app/DocumentsUIGoogle/splits
+donor:system_priv-app_PackageInstaller_PackageInstaller.apk | system/system/priv-app/PackageInstaller/PackageInstaller.apk | com.android.packageinstaller | system/system/priv-app/GooglePackageInstaller/GooglePackageInstaller.apk
+donor:system_priv-app_Tag_Tag.apk | system/system/priv-app/Tag/Tag.apk | com.android.apps.tag | system/system/priv-app/TagGoogle/TagGoogle.apk
+donor:system_app_CaptivePortalLogin_CaptivePortalLogin.apk | system/system/app/CaptivePortalLogin/CaptivePortalLogin.apk | com.android.captiveportallogin | system/system/app/CaptivePortalLoginGoogle/splits
+donor:system_product_app_LatinIME_LatinIME.apk | product/app/LatinIME/LatinIME.apk | com.android.inputmethod.latin | product/app/LatinImeGoogle/LatinImeGoogle.apk
+donor:system_product_priv-app_Dialer_Dialer.apk | product/priv-app/Dialer/Dialer.apk | com.android.dialer | (new; replaces GoogleDialer role)
+donor:system_product_app_messaging_messaging.apk | product/app/Messaging/Messaging.apk | com.android.messaging | (new; replaces Messages role)
+donor:system_product_app_webview_webview.apk | product/app/WebView/WebView.apk | com.android.webview | product/app/WebViewGoogle64/* + product/app/TrichromeLibrary64/*
+# Plus: build/privapp-permissions-aosp-transplants.xml -> system/system/etc/permissions/
+# Plus: build/zte-allowlist-patches-v1.txt applied to the two ZTE XMLs.

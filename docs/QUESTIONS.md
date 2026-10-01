@@ -17,3 +17,7 @@
 - Q-13 — Which REDMAGIC packages request GMS-only permissions / bind GMS services (Phonesky, GSF, location)? Needs stock dump. Status: BLOCKED on extraction.
 - Q-14 — UDFPS event node: stock EU uses /dev/input/event7 (daemon) — stable across builds? Verify via stock uevent/input dump. Status: OPEN.
 - Q-15 — Recovery-partition disagreement: wiki says no dedicated recovery (bundled in boot/init_boot) vs two trees + working dd method proving recovery_a/b bootable. Resolve from EU payload (does update.zip contain recovery.img?) + stock fstab. Status: OPEN.
+
+- Q-18 — AOSP donor sourcing: fetch AOSP GSI (phh/LineageOS) + chromium-webview prebuilt; verify hashes, package names, SDK-36 compat, GMS-scan clean. Status: TODO (plan in research/aosp-replacements.md).
+
+- Q-19 — EROFS rebuild: mkfs.erofs available (built); determine fs_config + file_contexts + fsverity/hash-tree strategy for rebuilt system/system_ext/product; vbmeta re-sign flow (test key, flags 0x78). Status: TODO.

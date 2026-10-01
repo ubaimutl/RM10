@@ -1,6 +1,6 @@
 # validation build/stage-v1-eu1105
 
-## removed files: 105, removed packages: 86
+## removed files: 105, removed packages: 0
 
 ## 1. surviving overlays targeting removed packages
   OK: no surviving overlay targets a removed package

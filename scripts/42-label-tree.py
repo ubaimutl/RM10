@@ -19,6 +19,22 @@ import subprocess
 import sys
 
 
+def stem_len(pattern):
+    """Length of the literal prefix (mirrors sefcontext_compile specificity)."""
+    n, i = 0, 0
+    while i < len(pattern):
+        c = pattern[i]
+        if c == "\\" and i + 1 < len(pattern):
+            n += 1
+            i += 2
+            continue
+        if c in ".*+?^$[](){}|":
+            break
+        n += 1
+        i += 1
+    return n
+
+
 def load_fc(path):
     entries = []
     for line in open(path, encoding="utf-8", errors="replace"):
@@ -32,10 +48,13 @@ def load_fc(path):
             continue
         regex, ctx = parts[0], parts[-1]
         try:
-            entries.append((re.compile(regex), ctx, regex))
+            rx = re.compile(regex)
         except re.error:
-            pass
-    return entries
+            continue
+        entries.append((rx, ctx, regex, stem_len(regex)))
+    # most-specific-first (sefcontext_compile semantics); file order breaks ties
+    entries.sort(key=lambda e: (e[3], len(e[2])), reverse=True)
+    return [(rx, ctx, src) for rx, ctx, src, _ in entries]
 
 
 def load_meta(path):

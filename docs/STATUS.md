@@ -21,7 +21,19 @@ Last updated: 2026-10-01 (UTC). Owner build: RedMagicOS 11.0.5MR1 EU, Android 16
 
 **Phase 7 (architecture): INTERIM DECISION — Approach A** (rebuilt EU REDMAGIC OS). See docs/ARCHITECTURE.md.
 
-**Phases 8–10: NOT STARTED** (staging script → rebuild pipeline → static validation → test plan for review).
+**Phase 8 (candidate build): DONE.** v1 images + test-key AVB chain generated,
+fully verified off-device (see FINDINGS F-21). AOSP donor GSI SHA-verified;
+9 transplants integrated with derived (not guessed) allowlists.
+
+**Phase 9 (static validation): DONE + RE-RUN ON FINALS.** Byte-intent verify,
+label census, APK inventory, GMS/REDMAGIC re-audits, validator gates,
+fsck/avbtool verifies, size budgets — all green.
+
+**Phase 10 (test plan): DRAFT READY FOR REVIEW** (docs/TEST-PLAN-DRAFT.md).
+Virtual boot BLOCKED with documented grounds; no device steps authorized.
+
+**Verdict: READY FOR LIMITED HARDWARE TESTING** (Gate 2 slot-B experiment only,
+after Gate 0/1 preconditions; residual risks listed in ARCHITECTURE + below).
 
 ## Key results so far
 

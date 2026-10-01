@@ -1,0 +1,10 @@
+apk	class_refs	intent_refs	provider_refs	permission_refs
+system/system/priv-app/NetworkStack/NetworkStack.apk				
+system/system/priv-app/DocumentsUI/DocumentsUI.apk				
+system/system/priv-app/PackageInstaller/PackageInstaller.apk				
+system/system/priv-app/Tag/Tag.apk				
+system/system/app/CaptivePortalLogin/CaptivePortalLogin.apk				
+product/app/LatinIME/LatinIME.apk				
+product/priv-app/Dialer/Dialer.apk		gms-intent/action:<com.google.android.gms.people.sync.focus.SYNC_HIGH_RES_PHOTO;gms-intent/action:Hcom.google.android.gms.people.sync.focus.SyncHighResPhotoIntentOperation	gms-provider/auth:<com.google.android.gms.people.sync.focus.SYNC_HIGH_RES_PHOTO;gms-provider/auth:Hcom.google.android.gms.people.sync.focus.SyncHighResPhotoIntentOperation;gms-provider/auth:com.google.android.gms	
+product/app/Messaging/Messaging.apk				
+product/app/WebView/WebView.apk	gms-core(121)	gms-intent/action:#com.google.android.gms.availability;gms-intent/action:'com.google.android.gms.vision.dynamite.;gms-intent/action:(com.google.android.gms.vision.DEPENDENCY;gms-intent/action:*com.google.android.gms.vision.DEPENDENCIES;gms-intent/action:+com.google.android.gms.signin.service.START;gms-intent/action:,com.google.android.gms.dynamite.descriptors.;gms-intent/action:-com.google.android.gms.dynamic.IObjectWrapper;gms-intent/action:.  You must have the following declaration within the <application> element:     <meta-data android:	gms-provider/auth: on com.google.android.gms;gms-provider/auth:#com.google.android.gms.availability;gms-provider/auth:'com.google.android.gms.vision.dynamite.;gms-provider/auth:(com.google.android.gms.vision.DEPENDENCY;gms-provider/auth:*com.google.android.gms.vision.DEPENDENCIES;gms-provider/auth:+com.google.android.gms.signin.service.START;gms-provider/auth:,com.google.android.gms.dynamite.descriptors.;gms-provider/auth:-com.google.android.gms.dynamic.IObjectWrapper	

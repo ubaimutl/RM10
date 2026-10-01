@@ -145,3 +145,33 @@ Each entry records source + date + relevance (NX789J-native vs sibling).
 - Dirty exceptions: ZBoard (heavy — replace), NBBrowser/Weather/Cleanup/Booking (remove), Wallpapers/PhotoEditor (remove/test), GameAssist (sign-in+MLKit — test), Settings_MFV (sign-in+FLP client lib — test), ZteAigc (sign-in — test), XRLauncher (play-asset — test).
 - Artifacts: package-analysis/EU-google-removal-list.md, EU-redmagic-survival-list.md, EU-redmagic-gms-scan.tsv; docs/ARCHITECTURE.md recommends Approach A.
 - Relevance: NX789J-native, owner-build exact. Runtime confirmation still required (static ≠ proof of no crash-loop).
+
+## F-21 — Candidate v1 BUILT: 4 EROFS images + test-key AVB chain (VERIFIED, 2026-10-01)
+
+- Images (firmware-manifests/CANDIDATE-v1-signed.sha256): system 5,565,849,600 B
+  (lz4), system_ext 737,755,136 B (zstd), product 1,992,269,824 B (lz4),
+  vendor 1,774,276,608 B (zstd) — every image EXACTLY its stock super-slot
+  size; total candidate ~8.6 GB vs stock ~10.5 GB (more super headroom).
+- Content: 105 removals (79 Google + 26 zte-replace/config), 10 additions
+  (9 AOSP transplants from SHA-verified Google GSI BP2A.250605.031.A3 +
+  derived allowlist XML), 2 ZTE allowlist patches (byte-exact verified).
+- Labels: full census vs stock — 0 mismatches on all 4 partitions
+  (original xattrs preserved via FUSE reads + tar pax headers; 23 new files
+  labeled system_file via specificity-sorted file_contexts eval, matching
+  removed counterparts' stock labels).
+- Verification: 50-verify 11740 identical / 0 failures; APK inventory 495
+  (0 google-packaged; 88 removed / 9 added reconciled); GMS scans match
+  stock verdicts; transplants GMS-clean (WebView carries standard Chromium
+  client stubs only); validator gates green; all 4 fsck rc=0; all 4
+  hashtree footers verify_image-clean.
+- AVB: fresh salts recorded; vbmeta_system re-signed RSA2048 test key
+  (rollback 1775001600 = stock, flags 0); top vbmeta RSA4096 test key
+  (rollback 0, flags 0; 3 chains + 7 hashes, vendor descriptor points at
+  rebuilt vendor). No-FEC footers (fec binary absent on host; coherent
+  with flags-3 disable-verification flash procedure).
+- Untouched: boot/init_boot/vendor_boot/dtbo/recovery/odm/dlkm/modem/dsp/
+  bluetooth/all firmware/modem/EFS/persist (hashes recorded; low-level
+  firmware never written by any pipeline step).
+- Virtual boot: BLOCKED (research/virtualization-blockers.md) — CHD needs
+  AOSP target-files + ARM host + 100 GB build; Cuttlefish/QEMU/Emulator
+  rejected with concrete grounds. Deepest off-device signal applied instead.

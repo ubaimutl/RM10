@@ -6,14 +6,15 @@
 # READS ONLY. Works unprivileged (FUSE + getfattr reads need no privilege).
 set -euo pipefail
 source "$(dirname "$0")/common.sh"
-[ $# -eq 2 ] || die "usage: $0 <images-dir> <outdir>"
-IMGS="$1"; OUT="$2"
+[ $# -ge 2 ] || die "usage: $0 <images-dir> <outdir> [part...]"
+IMGS="$1"; OUT="$2"; shift 2
+PARTS="${*:-system system_ext product vendor odm vendor_dlkm system_dlkm}"
 FUSE="$REPO_ROOT/tools/erofs/bin/erofsfuse"
 [ -x "$FUSE" ] || die "erofsfuse missing (rebuild with --enable-fuse)"
 mkdir -p "$OUT"
 need fusermount; need getfattr; need stat
 
-for part in system system_ext product vendor odm vendor_dlkm system_dlkm; do
+for part in $PARTS; do
   img="$IMGS/$part.img"; [ -f "$img" ] || continue
   mnt="$OUT/.mnt-$part"; mkdir -p "$mnt"
   log "$part: mounting ..."

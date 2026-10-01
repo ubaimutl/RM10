@@ -1,0 +1,7 @@
+firmware/
+.work/
+tools/
+sources/
+*.zip
+*.img
+*.bin

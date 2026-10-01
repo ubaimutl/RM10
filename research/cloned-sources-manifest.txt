@@ -1,0 +1,14 @@
+android_device_nubia_NX789J | lineage-23.2 | 9b1b3dff6fb2952b71c0403ac01150c343139e6a | https://github.com/IronShing/android_device_nubia_NX789J
+kernel_manifest_nubia_nx789j | nubia/nx789j | 3d539f3416b5b940e6ba7d0faeb3d27c6bf7a1bd | https://github.com/reminon/kernel_manifest_nubia_nx789j
+redmagic-10-pro-bt-fix | master | cd9a8e345333b97a29fced3926b340f01e32c25e | https://github.com/sequencode/redmagic-10-pro-bt-fix
+redmagic-10-pro-call-fix | master | cd68509cc41a61b9ac8582eaff842c948d0e8144 | https://github.com/sequencode/redmagic-10-pro-call-fix
+redmagic-10-pro-udc-fix | master | a9c2bb030cf872e1df3dd52707f8a5cc8cc0c838 | https://github.com/sequencode/redmagic-10-pro-udc-fix
+redmagic-10-pro-udfps-fix | master | 411d421d138d066c994a8ae8199e529c09fcf2be | https://github.com/sequencode/redmagic-10-pro-udfps-fix
+redmagic-wiki | master | 94671878def13ee7fbce2d286690f156b6610fe4 | https://github.com/mKonic/redmagic-wiki
+RedTrigger | main | 6c31acebf97aaa23dd4cbe69609942a32dca228b | https://github.com/zampierilucas/RedTrigger
+reminon-device_NX789J | main | 2bc499ca84b3c816899d204387352d4ec913a654 | https://github.com/reminon/device_NX789J
+rm10pro-orangefox-recovery | main | e1bce74548151062f2b481ba4ca0f8814cf41e85 | https://github.com/plompomg/rm10pro-orangefox-recovery
+RM11-Pro-Fan-Control | main | 99de102bf8d0f4e4afad4f3ee38e30895d568ff3 | https://github.com/cmfnels/RM11-Pro-Fan-Control
+RM-11-Pro-Hardware-Mapping | main | 7de039ecb66d64b53022eccfcbba98688612f623 | https://github.com/cmfnels/RM-11-Pro-Hardware-Mapping
+twrp_device_nubia_nx789j | twrp-16.0 | 5aa121c14872a8c4f5691d19b27ada3b7298431c | https://github.com/reminon/twrp_device_nubia_nx789j
+twrp-redmagic-10-pro | main | 168525623b66d06de6127f3ce3ec2af7f6d1cb4d | https://github.com/JueN-Sar/twrp-redmagic-10-pro

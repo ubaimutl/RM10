@@ -11,19 +11,22 @@ Inputs:
   <out.tar>
 Rules:
   - every path present in orig-meta keeps ORIGINAL uid/gid/mode/xattrs
-    (xattrs emitted as SCHILY.xattr.* pax headers; symlinks kept as links).
+    (xattrs emitted as base64 LIBARCHIVE pax headers; symlinks kept as links).
   - paths NOT in orig-meta (transplants + new XML) get root:root,
     0644 files / 0755 dirs, and SELinux label from first-match file_contexts
     evaluation (partition fc, then fallback). Unmatched -> recorded, ABORT
     (a PV candidate must not ship unlabeled files).
   - all mtimes pinned to --mtime (default stock build time) for determinism.
-Usage: 47-build-tar.py <stage-root> <orig-meta> <fc> <fallback-fc-or--> <prefix-or--> <out.tar> [--mtime N]
+  - root metadata must be explicit (--root-metadata JSON or a '.' table row).
+Usage: 47-build-tar.py <stage-root> <orig-meta> <fc> <fallback-fc-or--> <prefix-or--> <out.tar> [--mtime N] [--root-metadata JSON]
 """
-import io
+import base64
+import json
 import os
 import re
 import sys
 import tarfile
+from urllib.parse import quote
 
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__))))
 from importlib.util import spec_from_file_location, module_from_spec  # noqa: E402
@@ -43,7 +46,23 @@ def parse_xa(s):
     return out
 
 
-def main(stage, meta_p, fc_p, fbfb, prefix, out_tar, mtime):
+def xattr_bytes(value):
+    if value.startswith("0s"):
+        return base64.b64decode(value[2:], validate=True)
+    if value.startswith("0x"):
+        return bytes.fromhex(value[2:])
+    return value.encode("utf-8")
+
+
+def pax_xattrs(ti, attrs):
+    # LIBARCHIVE values are base64-decoded by erofs-utils. SCHILY values
+    # would otherwise encode getfattr's 0s... capability notation literally.
+    for key, value in sorted(attrs.items()):
+        ti.pax_headers["LIBARCHIVE.xattr." + quote(key, safe="")] = (
+            base64.b64encode(xattr_bytes(value)).decode("ascii"))
+
+
+def main(stage, meta_p, fc_p, fbfb, prefix, out_tar, mtime, root_metadata=None):
     meta = {}
     for line in open(meta_p):
         p = line.rstrip("\n").split("\t")
@@ -55,7 +74,20 @@ def main(stage, meta_p, fc_p, fbfb, prefix, out_tar, mtime):
     fcb = fc42.load_fc(fbfb) if fbfb != "-" else []
     new_labeled, kept, missing_meta = 0, 0, []
     with tarfile.open(out_tar, "w", format=tarfile.PAX_FORMAT) as tf:
+        root = root_metadata or meta.get(".")
+        if root is None:
+            sys.exit("ABORT: explicit original root metadata is required")
+        ti = tarfile.TarInfo(".")
+        ti.type, ti.uid, ti.gid = tarfile.DIRTYPE, root["uid"], root["gid"]
+        ti.mode = int(root["mode"], 8) if isinstance(root["mode"], str) else root["mode"]
+        ti.mtime = mtime
+        pax_xattrs(ti, root.get("xattrs", root.get("xa", {})))
+        tf.addfile(ti)
         for dp, dns, fns in os.walk(stage, followlinks=False):
+            # os.walk recurses in dns order; sorting only the emitted entries
+            # leaves archive order dependent on directory insertion order.
+            dns.sort()
+            fns.sort()
             for name in sorted(dns) + sorted(fns):
                 full = os.path.join(dp, name)
                 rel = os.path.relpath(full, stage)  # partition-relative
@@ -67,8 +99,7 @@ def main(stage, meta_p, fc_p, fbfb, prefix, out_tar, mtime):
                     m = meta[rel]
                     kept += 1
                     ti.uid, ti.gid, ti.mode = m["uid"], m["gid"], m["mode"]
-                    for k, v in m["xa"].items():
-                        ti.pax_headers[f"SCHILY.xattr.{k}"] = v
+                    pax_xattrs(ti, m["xa"])
                     if is_link or m["kind"] == "l":
                         ti.type = tarfile.SYMTYPE
                         ti.linkname = os.readlink(full)
@@ -102,7 +133,7 @@ def main(stage, meta_p, fc_p, fbfb, prefix, out_tar, mtime):
                     else:
                         ti.mode = 0o644
                         ti.size = os.path.getsize(full)
-                    ti.pax_headers["SCHILY.xattr.security.selinux"] = hit
+                    pax_xattrs(ti, {"security.selinux": hit})
                     if is_link or ti.type == tarfile.DIRTYPE:
                         tf.addfile(ti)
                     else:
@@ -117,10 +148,15 @@ def main(stage, meta_p, fc_p, fbfb, prefix, out_tar, mtime):
 
 if __name__ == "__main__":
     a = sys.argv[1:]
+    root_meta = None
+    if "--root-metadata" in a:
+        i = a.index("--root-metadata")
+        root_meta = json.load(open(a[i + 1]))
+        del a[i:i + 2]
     mt = 1779121582
     if "--mtime" in a:
         mt = int(a[a.index("--mtime") + 1])
         a = [x for x in a if x != "--mtime" and x != str(mt)]
     if len(a) != 6:
         sys.exit("usage: 47-build-tar.py <stage-root> <orig-meta> <fc> <fallback-fc|-> <prefix|-> <out.tar> [--mtime N]")
-    main(a[0], a[1], a[2], a[3], ("" if a[4] == "-" else a[4]), a[5], mt)
+    main(a[0], a[1], a[2], a[3], ("" if a[4] == "-" else a[4]), a[5], mt, root_meta)

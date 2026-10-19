@@ -1,58 +1,38 @@
-# STATUS — NX789J Google-free REDMAGIC OS project
+# RM10 status
 
-Last updated: 2026-10-01 (UTC). Owner build: RedMagicOS 11.0.5MR1 EU, Android 16, kernel 6.6.92-android15-8-g3637f4904cf5.
+Updated: 19 October 2026.
 
-## Where we are
+**Verdict: NOT READY FOR HARDWARE TESTING.** Two complete v2 builds pass host verification and have identical output bytes. The separate system-only profile also passes its complete host AVB chain. No hardware test is authorized or performed.
 
-**Phase 1 (research repo): IN PROGRESS.** Repo skeleton created, 9 source repos cloned, official EU firmware download started.
+## Established results
 
-**Phase 2 (firmware landscape): IN PROGRESS.**
-- EU target firmware IDENTIFIED + downloading: `V2.0.0B05MR1` (page label V11.0.05MR1), official Nubia CDN, 8,733,027,332 bytes, Last-Modified 2026-07-09. See `firmware-manifests/EU-V2.0.0B05MR1.md` once download completes.
-- CN leads named but NOT yet acquired: `GEN_CN_NX789JV1.0.0B24_SD_WO_ERA.zip`, `GEN_CN_NX789JV1.0.0B12MR1_SD_WO_ERA.zip` (HalabTech listing; B12MR1 mirror is Baidu Pan — effectively inaccessible; trust/provenance unverified).
-- Global (NEEA) Android-15-era OTA known: `GEN_NEEA_NX789JV1.0.0B13MR1_SD_WO_ERA` at `rom.download.nubia.com/Europe&Asia/NX789J/V10.0.13/update.zip` (not yet downloaded).
+- Official EU 11.0.5MR1 input hash and local stock full AVB chain verified.
+- Candidate stage independently reassembled from stock trees and donor APKs; content hash matches the previous stage.
+- Content-intent validation: 11,740 unchanged entries, 105 absent removals, 10 valid additions, zero failures.
+- Twelve host regression tests pass, covering real miniature signed AVB chains, preserved descriptors, wrong-key rejection, deterministic signing/tar order, image-size rejection, staging hardlinks, direct original metadata extraction, root/symlink/binary xattrs, content round-trip auditing and layout gates.
+- V1 is superseded: complete-chain mismatch and EROFS metadata defects are documented in findings F-21/F-22.
+- The source OTA contains 42 images; extracted names and sizes match its payload inventory. Both complete assembled v2 sets contain all 42 images and pass full-chain AVB verification.
+- Repeat builds match on every final image, raw EROFS image and tar hash, using the same pinned inputs, keys, tools and envelope budgets. This is an observed repeat-build result, not a cross-host or hardware test.
+- The system-only image matches the full profile's system image, with product, system_ext and vendor retained from stock and independently matched parent metadata. It does not meet the Google-free goal.
+- The final compression census reports LZ4 only on every rebuilt full-profile image.
 
-**Phase 3 (extraction pipeline): DONE.** payload-dumper-go + erofs-utils built local; scripts/ verify/extract/inventory/manifest/gms-scan all working.
+## V2 engineering
 
-**Phase 4 (EU firmware): DONE.** Official EU full OTA (RedMagicOS11.0.5MR1_EU == owner build, SHA-256 07eaf8be…) extracted: 44 partition images, 7 EROFS logical partitions, 574-APK inventory, per-file manifests, AVB chain mapped (vbmeta→boot/recovery/vbmeta_system; vbmeta_system→pvmfw/product/system/system_ext; vbmeta→dtbo/init_boot/vendor_boot/odm/system_dlkm/vendor/vendor_dlkm).
+The new pipeline pins inputs and tools, reconstructs original metadata directly from stock images, preserves boot/recovery key descriptors, retains rollback policy, keeps AVB verification enabled, and constructs a matched image set for each profile. All 11,750 encoded inodes in the full profile pass metadata checks, and extracted bytes/symlink trees match the stage on all four rebuilt partitions.
 
-**Phase 5 (Google graph): STATIC DONE.** 26 priv Google APKs + ~53 apps + ~15 overlays inventoried for removal; REDMAGIC gaming stack GMS-clean; 12 dirty exceptions triaged. Artifacts in package-analysis/.
+The host layout model evaluates only its supplied snapshot. Device-specific slot states, allocations and measurements are not recorded here as general NX789J facts.
 
-**Phase 6 (REDMAGIC graph): WELL UNDERWAY.** UDFPS protocol, triggers (sar0/1 + KEY_F7/F8 + nubia_game_scene), fan/LED/micropump/slider sysfs, charge-separation Settings keys all mapped statically.
+## Hardware blockers
 
-**Phase 7 (architecture): INTERIM DECISION — Approach A** (rebuilt EU REDMAGIC OS). See docs/ARCHITECTURE.md.
+1. A validated Virtual A/B write mechanism and complete shared-state inventory remain unproven. Image fit does not establish isolated writes or a usable fallback.
+2. A feasible backup scope and demonstrated stock restore route on matching firmware are still required before destructive work.
+3. Hardware test-key acceptance, physical capacities, stored rollback constraints, boot-control flags and the bytes of retained target images must be established for the specific target.
+4. Boot and the REDMAGIC hardware/network acceptance matrix have not been run. Relocking is a separate unvalidated procedure.
 
-**Phase 8 (candidate build): DONE.** v1 images + test-key AVB chain generated,
-fully verified off-device (see FINDINGS F-21). AOSP donor GSI SHA-verified;
-9 transplants integrated with derived (not guessed) allowlists.
+The full profile changes four logical images plus two vbmeta images. System-only changes system plus its two parents, but retains Google components outside system. Neither profile is a ready ROM release.
 
-**Phase 9 (static validation): DONE + RE-RUN ON FINALS.** Byte-intent verify,
-label census, APK inventory, GMS/REDMAGIC re-audits, validator gates,
-fsck/avbtool verifies, size budgets — all green.
+See [OFFLINE-BUILD.md](OFFLINE-BUILD.md), [AVB-CANDIDATE.md](AVB-CANDIDATE.md), [PARTITION-WRITES.md](PARTITION-WRITES.md) and [TEST-PLAN-DRAFT.md](TEST-PLAN-DRAFT.md).
 
-**Phase 10 (test plan): DRAFT READY FOR REVIEW** (docs/TEST-PLAN-DRAFT.md).
-Virtual boot BLOCKED with documented grounds; no device steps authorized.
-
-**Verdict: READY FOR LIMITED HARDWARE TESTING** (Gate 2 slot-B experiment only,
-after Gate 0/1 preconditions; residual risks listed in ARCHITECTURE + below).
-
-## Key results so far
-
-1. **No native NX789J custom ROM with Game Space exists (STRONG EVIDENCE, re-verified 2026-10-01).** Only GSI + root-module fixes exist. A Danish XDA post (Sep 2025) confirms GSI state: SIM off, under-screen camera unusable, shoulder triggers unusable on phh GSIs.
-2. **Recovery knowledge is mature (VERIFIED from source).** OrangeFox tree (plompomg, active as of 2026-09-30) and TWRP tree (reminon, twrp-16.0 branch) give us: full partition map, fstab (FBE wrappedkey-v0, ICE), dynamic-partition list, verified sysfs nodes (`/sys/kernel/fan/*`, `aw22xxx_led`, `zte_battery`, `/sys/class/leds/sar0|sar1` implied by input blacklist `nubia_tgk_aw_sar0_ch0/1_ch0`), input blacklist, touch driver modules (`zte_tpd.ko`, `panel_event_notifier.ko`, `aw9620x.ko` SAR, `aw882xx` audio, `drm_display_helper/msm_drm`).
-3. **UDFPS reverse-engineering is complete and reusable (VERIFIED from decompiled daemon).** sequencode's ZteFodDaemon documents the full ZTE fingerprint extension protocol — see `research/udfps-zte-protocol.md`.
-4. **Shoulder-trigger mechanism mapped (STRONG EVIDENCE).** SAR input devices `nubia_tgk_aw_sar` → KEY_F7/F8; enable via `nubia_game_scene=1` (+ `sar*/mode_operation` sysfs on RM11 generation); Nubia SystemMgr resets on `notifyActivityResumed`. RM11 hardware guide (cmfnels) gives fan/LED/micropump sysfs map, applicability to NX789J TBD.
-5. **Bootloader-unlock situation is VOLATILE — DO NOT TOUCH DEVICE.** ZTE Family Toolbox free unlock covers RM11 (SM8850); SM8750/RM10 support was in private beta (Apr 2026) with warnings that 11.0.13+ may block unlock and possible eFuse threat. Owner is on 11.0.5MR1 — below the warned version, but NO unlock/flash action without explicit authorization.
-
-## Decisions taken
-
-- Primary strategy remains **Approach A: rebuilt/modified EU REDMAGIC OS** (preserve EU vendor/radio, remove Google from system images). No evidence yet to prefer B/C/D.
-- NO device flashing, NO bootloader operations, NO modem/EFS/persist modifications. All work off-device.
-- Proprietary firmware NEVER committed to git (`firmware/` gitignored; hashes recorded in `firmware-manifests/`).
-
-## Next actions
-
-1. Wait for EU firmware download → verify size/hash → extract payload → manifests.
-2. Write `scripts/` extraction pipeline (payload → super → erofs/ext4 → manifests).
-3. Attempt CN package acquisition assessment (HalabTech provenance, hashes); do NOT download untrusted multi-GB blobs blindly.
-4. Check Android Dumps GitLab `nubia/nx789j` + ZTE opensource kernel for NX789J.
-5. Map RM11 LineageOS/EvolutionX approach for pattern reuse.
+Observed results and artifact references: [VALIDATION-V2.md](VALIDATION-V2.md).
+Machine-readable evidence: [build/validation-v2.json](../build/validation-v2.json).
+The published recovery binary review is in [RECOVERY-REVIEW.md](RECOVERY-REVIEW.md).

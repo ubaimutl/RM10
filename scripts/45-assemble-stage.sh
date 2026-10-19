@@ -12,10 +12,15 @@ set -euo pipefail
 source "$(dirname "$0")/common.sh"
 [ $# -eq 3 ] || die "usage: $0 <pristine-fs> <donor-apks> <out-stage-fs>"
 FS="$1"; DONOR="$2"; ST="$3"
+[ ! -e "$ST" ] || die "output already exists: $ST (use a new directory)"
+while IFS= read -r line; do
+  [[ -z "$line" || "$line" == \#* ]] && continue
+  donor="$(echo "${line%%|*}" | xargs)"; donor="${donor#donor:}"
+  [ -f "$DONOR/$donor" ] || die "missing required donor: $donor"
+done < "$REPO_ROOT/build/transplants-v1.txt"
 mkdir -p "$ST"
 log "hardlink copy ..."
 for p in system system_ext product vendor; do
-  rm -rf "$ST/$p"
   cp -al "$FS/$p" "$ST/$p"
 done
 
@@ -43,7 +48,7 @@ while IFS= read -r rel; do
 done < <(cat "$REPO_ROOT/build/gms-removal-v1.txt" "$REPO_ROOT/build/zte-replace-v1.txt" | sort -u)
 
 log "applying ZTE allowlist patches ..."
-python3 - "$ST" <<'EOF'
+python3 - "$ST" "$REPO_ROOT/build/zte-allowlist-patches-v1.txt" <<'EOF'
 import re, sys, os
 stage = sys.argv[1]
 def safe_write(path, data):
@@ -52,7 +57,7 @@ def safe_write(path, data):
     with open(tmp, 'w', encoding='utf-8') as f:
         f.write(data)
     os.replace(tmp, path)
-for line in open('build/zte-allowlist-patches-v1.txt'):
+for line in open(sys.argv[2]):
     line = line.strip()
     if not line or line.startswith('#'):
         continue
@@ -84,13 +89,16 @@ while IFS= read -r line; do
   top="${cand%%/*}"; rpath="${cand#*/}"
   # donor files stored flat: <donor-path-with-/_>.apk (already full filename)
   srcfile="$DONOR/$(echo "$donor" | tr '/' '_')"
-  [ -f "$srcfile" ] || { log "MISSING donor $donor"; continue; }
+  [ -f "$srcfile" ] || die "missing required donor: $donor"
   destdir="$ST/$top/$(dirname "$rpath")"
   mkdir -p "$destdir"
-  cp "$srcfile" "$destdir/$(basename "$rpath")"
+  # Replace the directory entry rather than writing through a stock hardlink.
+  cp "$srcfile" "$destdir/$(basename "$rpath").stage-tmp"
+  mv "$destdir/$(basename "$rpath").stage-tmp" "$destdir/$(basename "$rpath")"
   echo "ADD $cand $(stat -c%s "$destdir/$(basename "$rpath")") $(sha256_of "$destdir/$(basename "$rpath")")" >> "$MANIFEST"
 done < "$REPO_ROOT/build/transplants-v1.txt"
-cp "$REPO_ROOT/build/privapp-permissions-aosp-transplants.xml" "$ST/system/system/etc/permissions/"
+cp "$REPO_ROOT/build/privapp-permissions-aosp-transplants.xml" "$ST/system/system/etc/permissions/privapp-permissions-aosp-transplants.xml.stage-tmp"
+mv "$ST/system/system/etc/permissions/privapp-permissions-aosp-transplants.xml.stage-tmp" "$ST/system/system/etc/permissions/privapp-permissions-aosp-transplants.xml"
 echo "ADD system/system/etc/permissions/privapp-permissions-aosp-transplants.xml" >> "$MANIFEST"
 
 log "materializing hardlinks (labeling later mutates inodes; pristine must stay clean) ..."
@@ -100,4 +108,6 @@ done
 log "materialize done"
 
 log "stage assembled at $ST ; application manifest: $MANIFEST"
-grep -c "^RM-" "$MANIFEST"; grep -c "^ADD" "$MANIFEST"; grep -c "WAS-MISSING\|MISSING" "$MANIFEST" || true
+for pattern in '^RM-' '^ADD' 'WAS-MISSING\|MISSING'; do
+  grep -c "$pattern" "$MANIFEST" || true
+done

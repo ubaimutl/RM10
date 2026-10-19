@@ -1,0 +1,177 @@
+{
+  "extracted_images": 42,
+  "images": {
+    "abl.img": {
+      "bytes": 245760,
+      "sha256": "ded49ef2064f3d8a92320acbc4d4df414067fd0384f8744980442b2fe5850ce7"
+    },
+    "aop.img": {
+      "bytes": 368640,
+      "sha256": "0e72de7bf88d46b7668aaf470bfcc2aba0866860b108a929c901c79e9afe8a9a"
+    },
+    "aop_config.img": {
+      "bytes": 28672,
+      "sha256": "ea02b528649c847eb95591a99de1e210a24fe1a2a67706ad18712ef81570773f"
+    },
+    "bluetooth.img": {
+      "bytes": 3829760,
+      "sha256": "dae61a82a56afab9a3af44d1d285f010db0f6f3723ced4914429090f36dc52f5"
+    },
+    "boot.img": {
+      "bytes": 100663296,
+      "sha256": "31f441e016f07f37a2e2d39e1823e90df3d4fa114bcd7dc6f318fd76ca8a4531"
+    },
+    "cpucp.img": {
+      "bytes": 315392,
+      "sha256": "93708726c6ac80d3b41eb5df05f3bf86990893439e95862bd34d3eae8a9e2ad9"
+    },
+    "cpucp_dtb.img": {
+      "bytes": 16384,
+      "sha256": "a9af1561299c8a9e101e4a5851bae18cd05efee76752d6b5ee19fb2fae159b3d"
+    },
+    "devcfg.img": {
+      "bytes": 57344,
+      "sha256": "c159f1328a285765adabfb9bc017f52a0068a512594786509d8f4691496e285d"
+    },
+    "dsp.img": {
+      "bytes": 67108864,
+      "sha256": "6caad45315cc6eb76d6cb990e93f5374afc48d3c7001cd38f0f43118afb4cf8b"
+    },
+    "dtbo.img": {
+      "bytes": 18874368,
+      "sha256": "eb257acc4bbe9a0294440ca1cfbc25ccd9b5a40ed1911070a9a76186b601490b"
+    },
+    "featenabler.img": {
+      "bytes": 106496,
+      "sha256": "bad29a87285083f6374534bbb06da99e75352d5b525293566b6dc1bd0f9ffa1e"
+    },
+    "hyp.img": {
+      "bytes": 1675264,
+      "sha256": "927dda575cf1d5ba475121015697b95825cf131f67aaf587af3d883a3ba9cc6a"
+    },
+    "imagefv.img": {
+      "bytes": 16384,
+      "sha256": "1a42c1761272f17a1feb4fdfbb38c7b1df585b5b2904e78ed961bf1e6cd64271"
+    },
+    "init_boot.img": {
+      "bytes": 8388608,
+      "sha256": "ddbea70e2bf2d85fb769403d81a2e09e1d0d8c2d808d3a020e4cecf590d5176d"
+    },
+    "keymaster.img": {
+      "bytes": 446464,
+      "sha256": "3dc8b46eb22a7bbf66da5231fdc63a6b48b8829c4a56abfc677a71ec54bcd4f2"
+    },
+    "modem.img": {
+      "bytes": 196210688,
+      "sha256": "0194151b07c744e7e7b8decaede819efd8817ea2c4bac5b53c63cd844131e378"
+    },
+    "odm.img": {
+      "bytes": 897024,
+      "sha256": "290215da165a273a71f3db9e048af7222b4993b6f4f59819306a0efdcead9fb6"
+    },
+    "pdp.img": {
+      "bytes": 212992,
+      "sha256": "aa56ee040d89171dff222ed026bd26b8241d1525bafcf1ea8497ee77ce044fd1"
+    },
+    "pdp_cdb.img": {
+      "bytes": 16384,
+      "sha256": "8d2f60d72be1918385b36e960210c7176e35015f0546651938efa9ec0e8d0529"
+    },
+    "product.img": {
+      "bytes": 2030374912,
+      "sha256": "e9848827c7385e171040af69297d86a32a8fd8b737fe12c3de59af7741a9216c"
+    },
+    "pvmfw.img": {
+      "bytes": 1048576,
+      "sha256": "e13e2b73171e60965f3594b831a91fc65d592c4c8a875729dc7605002ebafbce"
+    },
+    "qupfw.img": {
+      "bytes": 65536,
+      "sha256": "d7195354308add9cf4ee9c49d1e94cea0bedb59c025268a7151b6a86fe8f526e"
+    },
+    "recovery.img": {
+      "bytes": 104857600,
+      "sha256": "01d7e1659d22be22b50f4ba9089f3bd76204bb1910305435d7a8d3cd23b7a273"
+    },
+    "shrm.img": {
+      "bytes": 151552,
+      "sha256": "8cd2462c9d28f6a8e85a1c2b670049e63851a12006fa8278d7a559619e2785cd"
+    },
+    "soccp_dcd.img": {
+      "bytes": 16384,
+      "sha256": "909dd7b020b22fead26d4badca3a171d9e62ccb6a6a675d23ecc602eec28916a"
+    },
+    "soccp_debug.img": {
+      "bytes": 147456,
+      "sha256": "b86308a9356a6b356eec1cdcf0856ec5cbd00db43ed5a3f6d1a5dc73324e79d3"
+    },
+    "splash.img": {
+      "bytes": 18710528,
+      "sha256": "21273a6651c8e4e76789f134ac5d224c07d862e3b025935282a0671413735699"
+    },
+    "spuservice.img": {
+      "bytes": 94208,
+      "sha256": "6703668e734eae5735125b46f6379ba07b56af8e42c10c69d22bbdd7531ce32d"
+    },
+    "system.img": {
+      "bytes": 5672132608,
+      "sha256": "c362011d13e9b7231b57ce7de0c0bbfe6b0965c764afc82d3fba9cc067a3b0c8"
+    },
+    "system_dlkm.img": {
+      "bytes": 7577600,
+      "sha256": "e24f112699da58c163ff5d9480d046cafc043919796409025989ff624fcd91d1"
+    },
+    "system_ext.img": {
+      "bytes": 751923200,
+      "sha256": "1258a37f4180d4bc21f7f3a6b96cf2b787cadf8d931d356696b9d6ff1094fb2c"
+    },
+    "tz.img": {
+      "bytes": 4153344,
+      "sha256": "3083b8df2793c1523d506262e0af1b21b5fdcb161dcf34b905dc2b09d5410f23"
+    },
+    "uefi.img": {
+      "bytes": 2793472,
+      "sha256": "42d9a5179c759dcc2c79dc110aad95a990b0ed4f313db960ad0835d347e50bc8"
+    },
+    "uefisecapp.img": {
+      "bytes": 200704,
+      "sha256": "c106c5beb0e67174807a3a9c858b7d29aba1bee4be1e1c08e2e39e5b47fe8ca1"
+    },
+    "vbmeta.img": {
+      "bytes": 8192,
+      "sha256": "3850a358411134ec02b8753d000a69e9a5938a75872a2f6bb90bc61e11b75074"
+    },
+    "vbmeta_system.img": {
+      "bytes": 4096,
+      "sha256": "42dcfd8917ce13fb04307b72399899f343897661fb8cfc568ffca0d27a371f05"
+    },
+    "vendor.img": {
+      "bytes": 1808211968,
+      "sha256": "2f59dcec299d5acbecaf4d5504b8db8c24731b257f24844baeb20a857d98d41d"
+    },
+    "vendor_boot.img": {
+      "bytes": 100663296,
+      "sha256": "38c91036effc9a374b42e9e2b0df452f7be566a56184e0673faf720e78734d85"
+    },
+    "vendor_dlkm.img": {
+      "bytes": 33632256,
+      "sha256": "a53d7a54098f784415f0f3816386961f13acd61694185416328e73c567dc657a"
+    },
+    "xbl.img": {
+      "bytes": 1175552,
+      "sha256": "9b7f0ff866e9c9eae12bd40bddc6b0b2adcf286bdcd23b3302d0221225de34d6"
+    },
+    "xbl_config.img": {
+      "bytes": 348160,
+      "sha256": "b515ef9a559e5dc5cec2cb8aac1b0d42e4f6802ef3fee818bb202f4bff1664fd"
+    },
+    "xbl_ramdump.img": {
+      "bytes": 798720,
+      "sha256": "4836893342a6cf255ac3e760a4d40fc57f989585da87b0dd0f487b9d44df8f73"
+    }
+  },
+  "kind": "official payload inventory; not a hardware write plan",
+  "names_and_sizes_match": true,
+  "payload_partitions": 42,
+  "source_sha256": "07eaf8be5036f5b7192294c379e46d0b947f9e6114c5c437c6951211a12d5027"
+}

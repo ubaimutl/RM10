@@ -18,7 +18,7 @@ zip_listing:
 ota-type: AB (FULL — no pre-build in metadata)
 pre-device: NX789J
 post-build fingerprint: nubia/NX789J-EEA/NX789J:16/BQ2A.250705.001-BP2A.250605.031.A3/20260519.002456:user/release-keys
-display id: RedMagicOS11.0.5MR1_EU  <-- matches owner device build
+display id: RedMagicOS11.0.5MR1_EU
 build date: Tue May 19 00:26:22 CST 2026 (utc 1779121582)
 security patch: 2026-04-01, SDK 36 (Android 16)
 payload FILE_SIZE: 8733012041, FILE_HASH (base64): vjKe4GuPtA/fimu8Y+oWXNzMheFV07wsZAxcnU946sg=

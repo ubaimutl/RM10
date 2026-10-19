@@ -1,0 +1,132 @@
+{
+  "content_intent": {
+    "additions_valid": 10,
+    "failures": 0,
+    "identical": 11740,
+    "removals_absent": 105
+  },
+  "date": "2026-10-19",
+  "full_profile": {
+    "avb_full_chain_pass": true,
+    "codecs": {
+      "product": {
+        "LZ4": 384
+      },
+      "system": {
+        "LZ4": 4610
+      },
+      "system_ext": {
+        "LZ4": 1880
+      },
+      "vendor": {
+        "LZ4": 5492
+      }
+    },
+    "generated_image_sha256": {
+      "product.img": "cf7d28bd45812b07524f5de9f919f9e1c190fe6182c07db77015e9d5a545a365",
+      "system.img": "05357821a38ec7bc486ffbe641285f8fe4a88f70c5b947f81915a31a5b1ca10b",
+      "system_ext.img": "582e7ac5a2ba5237b93d3a3bc7d31424c1b87df775524fb9176806710e0292a2",
+      "vbmeta.img": "365490b0faf1a21f0326bcdaeafe5731b32c841e61951f2cc7e0ac1d20792799",
+      "vbmeta_system.img": "7c876599662cf94102f0aef53089190922d3e439e49fc8eef36ba68ed2411f40",
+      "vendor.img": "38be128325bc4e03397d7592bec9252f49c1387447d59bf676e2df78a87fbfe1"
+    },
+    "inode_audits": {
+      "product": {
+        "extracted_tree_sha256": "1176141fb77e25b71990e3f44b9f7c44b5d7719422cc8d1a2297a9b43ca36b32",
+        "metadata_inodes_checked": 533,
+        "pass": true,
+        "root_and_binary_xattrs_checked": true,
+        "stage_tree_sha256": "1176141fb77e25b71990e3f44b9f7c44b5d7719422cc8d1a2297a9b43ca36b32",
+        "stock_metadata_retained": 525
+      },
+      "system": {
+        "extracted_tree_sha256": "a273488e9af4008ce28483aa0cf678a8e938a49eafeb5808713bfa51e06b8ea9",
+        "metadata_inodes_checked": 5241,
+        "pass": true,
+        "root_and_binary_xattrs_checked": true,
+        "stage_tree_sha256": "a273488e9af4008ce28483aa0cf678a8e938a49eafeb5808713bfa51e06b8ea9",
+        "stock_metadata_retained": 5230
+      },
+      "system_ext": {
+        "extracted_tree_sha256": "64cd94c287b6dbd97d9b1c2e1d94f50c9239a945f8adb5366805f38ba13d022d",
+        "metadata_inodes_checked": 1458,
+        "pass": true,
+        "root_and_binary_xattrs_checked": true,
+        "stage_tree_sha256": "64cd94c287b6dbd97d9b1c2e1d94f50c9239a945f8adb5366805f38ba13d022d",
+        "stock_metadata_retained": 1458
+      },
+      "vendor": {
+        "extracted_tree_sha256": "2cae3e26cf4c5bbffd3bcb5a006a316e767105ebe3a9f4f321ed3fcbe2e7fa08",
+        "metadata_inodes_checked": 4518,
+        "pass": true,
+        "root_and_binary_xattrs_checked": true,
+        "stage_tree_sha256": "2cae3e26cf4c5bbffd3bcb5a006a316e767105ebe3a9f4f321ed3fcbe2e7fa08",
+        "stock_metadata_retained": 4518
+      }
+    },
+    "raw_erofs_sha256": {
+      "product": "ca0af7bac42d892d968c649902d0e3881510e153febce6cc81b39e5eb0b31afb",
+      "system": "79b5cba6c52018fdda9c26f6a82cbf9b45b0490de11cfd4ce8e931e286660bfc",
+      "system_ext": "c9e04dab31553fc486e8746486a14d2eef5726934e66b59ed34a30df5c7c9ce3",
+      "vendor": "9beb64ef743466a79edf619d4a400d7c89812c00cb07fdd3322557c818958c2c"
+    },
+    "tar_sha256": {
+      "product": "70309531811f8e2154be6317177e30f86b1b2055d96c6f8968c5a455b0be26ab",
+      "system": "f519d19931f7f3b3c87a6487633b5a786a9a1c4f7c14c80c1ade01cafb61b5e6",
+      "system_ext": "22ff57fdaca5f9f53afc4e744306ff37dc1acba9ca30e53f97714d19637faa06",
+      "vendor": "c2125380e856216f46fd3fb450b90cb6370ba5b43aa763fae1610574d6c36438"
+    }
+  },
+  "hardware_test_authorized": false,
+  "host_regression_tests": {
+    "count": 12,
+    "passed": true
+  },
+  "input_lock_sha256": "6e3ce4c2658e22394da0373061360831911fa1abc239c765e32c60a8f06d00eb",
+  "recipe_sha256": "58d9eaf5fe49fe5da1e48e4292f3fcffff5a59d532cb268b75805320f8a28a59",
+  "recovery_review": {
+    "avb_algorithm": "NONE",
+    "document": "docs/RECOVERY-REVIEW.md",
+    "hardware_restore_proven": false,
+    "rollback_index": 0,
+    "sha256": "1d98db121bc30b680e0392483a1040b7661b5ccd94c0fadd96502ac5e19e7bfc",
+    "stock_chain_acceptance": false
+  },
+  "remaining_gates": [
+    "validated Virtual A/B write mechanism and shared-state plan",
+    "proven stock recovery",
+    "hardware trust/rollback/boot-control evidence",
+    "retained target image contents verified",
+    "runtime acceptance"
+  ],
+  "reproducibility": {
+    "all_final_images_equal": true,
+    "assembled_images_compared": 42,
+    "raw_erofs_equal": true,
+    "second_payloads_linked_to_first_after_comparison": true,
+    "tar_archives_equal": true
+  },
+  "scope": "Pinned source firmware and explicit local image budgets; no universal slot assumptions.",
+  "source_inventory": {
+    "extracted_images": 42,
+    "names_and_sizes_match": true,
+    "payload_partitions": 42,
+    "source_sha256": "07eaf8be5036f5b7192294c379e46d0b947f9e6114c5c437c6951211a12d5027"
+  },
+  "stage_reassembly": {
+    "identical": true,
+    "old_stage": "d20240118dfde3212005ee3e876ae2c860d2bee0e336b439b08b86fbe451da59",
+    "reassembled_stage": "d20240118dfde3212005ee3e876ae2c860d2bee0e336b439b08b86fbe451da59"
+  },
+  "system_only_profile": {
+    "avb_full_chain_pass": true,
+    "generated_image_sha256": {
+      "system.img": "05357821a38ec7bc486ffbe641285f8fe4a88f70c5b947f81915a31a5b1ca10b",
+      "vbmeta.img": "901131f59db78bc802ae5fa4694f110cf6f3ef4fbf37565af676d9e9a461544a",
+      "vbmeta_system.img": "872bcb8ae9e6b76d3e08f1448ad1d6bcd086b665d761bd1883eb66a8f3c07f13"
+    },
+    "google_free": false,
+    "product_system_ext_vendor_stock": true,
+    "system_matches_full_profile": true
+  }
+}

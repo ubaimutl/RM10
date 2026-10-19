@@ -1,58 +1,47 @@
-# Safe hardware test plan — DRAFT FOR OWNER REVIEW (DO NOT EXECUTE)
+# Hardware-test gates — blocked
 
-No step below is authorized. Nothing here flashes, unlocks, wipes, or modifies
-the device. This plan exists so the owner can approve, amend, or reject each gate.
+The former draft assumed B was inactive and A was an independent stock fallback. Neither is a project default. This document replaces that execution recipe with requirements; it does not authorize phone operations.
 
-## Gate 0 — Preconditions (all must hold before any device step)
+## Gate 0: host artifacts
 
-- [ ] Complete stock backup exists: EDL read-back of BOTH slots' critical partitions
-      (boot, init_boot, vendor_boot, recovery, vbmeta*, super, modem, persist,
-      EFS/modemst, ztecfg, uefivarstore) with SHA-256 recorded, stored off-device.
-- [ ] Stock restore path TESTED on an identical spare device OR via read-back
-      verification (never "tested" on the owner's phone first).
-- [ ] Owner confirms data backup (photos, 2FA, chats) — device WILL be wiped by unlock.
-- [ ] Owner accepts known irreversible changes: Widevine L1→L3 (documented),
-      SafetyNet/PlayIntegrity fail, banking apps may refuse, warranty implications.
-- [ ] Bootloader unlock compatibility for 11.0.5MR1_EU confirmed by community
-      (currently NO published RM10 matrix — see QUESTIONS Q-10; do not proceed blind).
-- [ ] EDL/firehose write path confirmed working on this exact build (read-back test only).
-- [ ] Candidate images pass ALL Phase 9 static gates (already green for stage v1,
-      must re-run after AOSP transplants + EROFS rebuild).
-- [ ] Updater frozen on device (no OTA during experiments).
+- Reassemble the stage from pinned stock inputs and donors and verify its content identity.
+- Build twice with pinned compression, UUIDs, timestamps, salts, keys and tools. Compare tar, raw EROFS and final image hashes.
+- Require a complete passing AVB chain with stock boot/recovery descriptors and rollback policy preserved. Verify each experimental profile independently.
+- Produce a complete image manifest, descriptor diff and partition-write inventory.
+- Model an explicit layout without assuming slot state, fallback contents, reclaimable extents or physical independence.
 
-## Gate 1 — Unlock + backup (destructive to data, reversible to stock)
+Results belong in [STATUS.md](STATUS.md) and the validation report. Host checks are necessary, but do not establish hardware acceptance.
 
-1. Unlock bootloader via the community free path ONLY IF Gate-0 version
-   compatibility is confirmed. Record `fastboot getvar unlocked`.
-2. Immediate full EDL backup (see Gate 0 list). Verify hashes.
-3. Boot stock, confirm baseline: run the hardware test matrix subset
-   (docs/TEST-MATRIX.md BOOT+DISPLAY+REDMAGIC+PHONE) on STOCK unlocked —
-   establishes the unlocked-baseline (fingerprint behavior post-unlock!).
+## Gate 1: demonstrate recovery before destructive work
 
-ABORT/ROLLBACK: relock is NOT clean (wiki: certification stays broken).
-Rollback = restore EDL backup to both slots. If restore fails → STOP, seek spare-device recovery.
+Remain blocked until there is evidence for:
 
-## Gate 2 — Smallest possible first experiment (no full flash)
+- A feasible backup scope, acquisition method and restore route on the exact test firmware. Establish what can be read before a destructive transition; do not schedule the first required backup after unlocking.
+- Recovery entry and stock write capability after boot failure, preferably demonstrated on matching spare hardware. A read-back checksum is not a restore demonstration.
+- Exact recovery image hashes and validated slot, filesystem, decryption, restore, AVB and rollback behavior if custom recovery is involved.
+- A restore design avoiding modem/EFS/persist/regional/provisioning writes. Operations affecting both slots or shared storage must be explicit.
+- Accounted-for data loss and device-state transitions before any later hardware authorization.
 
-Prefer slot-B-only, logical-partitions-only trials:
-- Flash rebuilt `system_b` ALONE (GMS-off, ZTE stack intact) with patched
-  vbmeta_system_b; keep vendor/odm/modem/boot untouched; keep slot A pristine.
-- Expected: boot to launcher, Game Space + triggers + fan work, no GMS crash loops.
-- If boot fails: `fastboot --set-active=a` back to pristine slot. REQUIREMENT:
-  verify slot-switch works BEFORE flashing B (test A→B→A on stock images).
+An OTA ZIP alone is not a complete device-specific recovery image. Unreadable boot-control or rollback values remain unresolved.
 
-## Gate 3 — Full candidate (only after Gate 2 green)
+[RECOVERY-REVIEW.md](RECOVERY-REVIEW.md) records the published OrangeFox
+binary's unsigned AVB metadata, older Global fingerprint and filesystem/slot
+configuration concerns. None has been resolved by a matching-firmware restore test.
 
-Flash rebuilt system/system_ext/product (+ AOSP transplants) to slot B,
-patched vbmeta chain, boot, run FULL docs/TEST-MATRIX.md incl. network audit
-(boot with no user apps, capture DNS/TLS 15 min, classify endpoints).
+## Gate 2: validate the actual hardware procedure
 
-## Gate 4 — Acceptance
+Only after Gate 1 can a procedure be reviewed against a particular target:
 
-All matrix rows pass + network audit shows no privileged-Google system traffic
-+ modem/radio behavior identical to stock (signal, bands, VoLTE).
-Result is still labeled CANDIDATE until 2 weeks daily-driver stability.
+- Establish firmware identity, active slot, boot-control flags, rollback constraints and snapshot state through a separately authorized inspection method.
+- Verify that every retained image at the intended target matches the pinned stock set. The running build's identity does not prove another slot's boot, recovery or firmware contents. Revise the image/write plan if any retained input differs.
+- Resolve logical-image and physical boot/vbmeta capacities, shared extents and every allocation change. Demonstrate protection of the running system or explicitly abandon any protected-fallback claim.
+- Choose a validated snapshot/update or allocation mechanism. An offline capacity calculation does not prove it works.
+- Identify every image write and shared-state change, with a recovery action for failure at each stage. Never relock around modified images.
+- Account for shared userdata changes during candidate boot and any migration or app-state incompatibility on fallback; switching system slots is not a data restore.
+- Obtain explicit authorization for the concrete destructive procedure. Off-device development does not authorize unlocking, rebooting, installation, slot switching or flashing.
 
-## Explicitly forbidden at every gate
+## Gate 3: runtime acceptance
 
-- Modem/EFS/persist/ztecfg/uefivarstore writes. Radio-region experiments. Relocking around modified images. `fastboot flash` to the ACTIVE slot. Any step while EDL is unavailable.
+If a controlled test is eventually authorized, use [TEST-MATRIX.md](TEST-MATRIX.md) for boot, networking, camera, fingerprint, charging and REDMAGIC behavior. Static checks cannot establish full functionality. System-only remains a dependency probe with Google components in other partitions.
+
+Runtime success does not prove relocking or stock restoration safe; those are separate procedures with their own evidence requirements.

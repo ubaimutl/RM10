@@ -5,3 +5,11 @@ sources/
 *.zip
 *.img
 *.bin
+__pycache__/
+*.pyc
+
+# Local signing material and device inspection captures
+*.pem
+*.key
+adbkey*
+inspection-private/

@@ -16,7 +16,10 @@ from kernel.org main + --enable-fuse), run unprivileged.
 | product | `-zlz4` | 592,109,568 | 1,992,269,824 | 1.4 GB |
 | vendor | `-zlz4hc,level=12 -C131072` | 1,623,154,688 | 1,774,276,608 | 151 MB |
 
-Slot bytes = stock vbmeta hash-descriptor Image Size (super allocation).
+The historical "Slot bytes" column used a stock AVB data-length value as
+the v1 footer envelope. This is not the actual logical-partition allocation.
+V2 takes explicit capacities from a supplied layout and includes tree/footer
+overhead when checking fit.
 All footers (sha256, no-FEC) verified with avbtool verify_image.
 
 History (why not uniform): v1 used `-zlz4` everywhere except zstd for
@@ -59,7 +62,7 @@ LZ4 decoder; cluster size is decoder-agnostic).
 ## 4. Kernel support proof (shipping kernel, not a tarball)
 
 Binary: boot.img kernel, `Linux version 6.6.92-android15-8-g3637f4904cf5`
-= the exact string on the owner's device. Embedded IKCONFIG extracted
+from the extracted stock boot image. Embedded IKCONFIG extracted
 (`IKCFG_ST` magic → gzip → 7746 lines, saved as .work/nx789j-kernel-config.txt):
 
 - `CONFIG_EROFS_FS=y`, `CONFIG_EROFS_FS_XATTR=y`,
@@ -80,6 +83,7 @@ exists for other subsystems but is NOT wired into erofs.)
   is: (a) used by stock on the same partitions, (b) enabled in the shipping
   kernel config, (c) present as code in the shipping kernel binary.
 - The zstd experiment is REMOVED from the candidate (would not mount:
-  no erofs-zstd wiring in this kernel). No super-resize needed; all slots fit.
+  no erofs-zstd wiring in this kernel). Codec compatibility does not prove
+  partition fit or safe allocation; those require a separate layout model.
 - NOTHING was changed except the two compressor selections (content,
   labels, sizes-budget all re-verified after rebuild; AVB chain regenerated).

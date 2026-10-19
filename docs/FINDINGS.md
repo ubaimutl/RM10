@@ -58,7 +58,7 @@ Each entry records source + date + relevance (NX789J-native vs sibling).
 
 ## F-08 — EU target firmware identified, official, downloading (VERIFIED, 2026-10-01)
 
-- `https://rom.download.nubia.com/Europe/NX789J/V2.0.0B05MR1/update.zip` — HTTP 200, 8,733,027,332 B, Last-Modified 2026-07-09, Tencent COS. Page label V11.0.05MR1 (matches owner's 11.0.5MR1 EU modulo naming). NOTE page-URL version mismatch: path says V2.0.0B05MR1 (internal REDMAGIC OS 11 versioning?) — resolve from payload properties after extraction (Q-05).
+- `https://rom.download.nubia.com/Europe/NX789J/V2.0.0B05MR1/update.zip` — HTTP 200, 8,733,027,332 B, Last-Modified 2026-07-09, Tencent COS. Page label V11.0.05MR1 (REDMAGIC OS 11.0.5MR1 EU naming). NOTE page-URL version mismatch: path says V2.0.0B05MR1 (internal REDMAGIC OS 11 versioning?) — resolve from payload properties after extraction (Q-05).
 - Global sibling: `.../Europe&Asia/NX789J/V2.0.0B05MR/update.zip` (not yet fetched).
 - Older: `GEN_NEEA_NX789JV1.0.0B13MR1` (V10.0.13, Android 15), `GEN_EEA_NX789JV1.0.0B10MR1`, V10.0.8/9 EU, `GEN_EEA_NX789SV2.0.0B04MR1` (Mar 2026, A16).
 - Relevance: NX789J-native.
@@ -77,8 +77,8 @@ Each entry records source + date + relevance (NX789J-native vs sibling).
 
 ## F-11 — Unlock/EDL landscape volatile; device risk elevated (STRONG, 2026-10-01)
 
-- ZTE Family Toolbox (SYXZ) free unlock: RM11/SM8850 supported; SM8750/RM10 in private beta Apr 2026, "DO NOT UPDATE to 11.0.13+" warnings + eFuse-theft concerns voiced by community (XDA thread 4780930). Owner on 11.0.5MR1 (below warned rev) — still, NO action authorized.
-- EDL path exists (bkerler/edl, devprg.melf ~1.6 MB, LUN4 GPT map with vbmeta_b/init_boot_b sectors documented in XDA EDL-root guide, Feb 2025) but used only for research reference, never on owner device without authorization.
+- ZTE Family Toolbox (SYXZ) free unlock: RM11/SM8850 supported; SM8750/RM10 in private beta Apr 2026, "DO NOT UPDATE to 11.0.13+" warnings + eFuse-theft concerns voiced by community (XDA thread 4780930). Firmware numbering and unlock compatibility require independent verification.
+- EDL path exists (bkerler/edl, devprg.melf ~1.6 MB, LUN4 GPT map with vbmeta_b/init_boot_b sectors documented in XDA EDL-root guide, Feb 2025); this is a research reference, not a validated recovery procedure.
 - Paid unlock/flash culture + password-locked EDL zips (sarhanroots, romprovider "pro help") = untrusted; never run closed flashing tools on host without analysis.
 - Relevance: NX789J-native.
 
@@ -108,7 +108,7 @@ Each entry records source + date + relevance (NX789J-native vs sibling).
 - Toolbox 1.2.3+ → 1.2.4 (May 2 first free RM10 unlocks) → 1.2.7.7 stable → 1.2.8-beta2; native-Linux bkerler/edl port WIP ("do not use yet"); GhostLock CVE-2026-43499 temp-root supports RM10 shipping kernel.
 - No published RM10 firmware↔unlock-compatibility matrix ("has to be an older version" — dev-reverse). RM11 matrix (11.0.18MR1_GB last fully-working incl. fingerprint fix; GBL patched in .19MR2; Aug-2026 abl+efisp downgrade bypass) is SIBLING-ONLY.
 - EDL/firehose is the only write path (no working fastboot on stock); losing EDL access = losing all flashing/root — test plan must treat EDL availability as precondition.
-- Owner device: NO action. Owner advisory (separate message): do not update, consider freezing updater.
+- Firmware-specific unlock compatibility remains unverified; this research does not establish a safe unlock procedure.
 - Relevance: NX789J-native (procedure), sibling (matrix).
 
 ## F-17 — Internal wiki contradiction on efisp/recovery (VERIFIED disagreement, 2026-10-01)
@@ -144,9 +144,15 @@ Each entry records source + date + relevance (NX789J-native vs sibling).
 - Gaming/hardware REDMAGIC packages show ZERO GMS class refs and ZERO Google permissions: GameSpace, GamePi, KeyMapCenter, NBFan, ChargeSeparation, ColorFulLight, GameFloat, PluginTrigger, ProjectionScreen, VirtualGameHandle, Thermal×2, PowerSaveMode, FingerprintService, SetupWizard_MFV (uses GSETTINGS perms — graceful unknown-perm post-GSF), SystemUI/Launcher/Telecom/SettingsProvider/Camera/ServiceManager.
 - Dirty exceptions: ZBoard (heavy — replace), NBBrowser/Weather/Cleanup/Booking (remove), Wallpapers/PhotoEditor (remove/test), GameAssist (sign-in+MLKit — test), Settings_MFV (sign-in+FLP client lib — test), ZteAigc (sign-in — test), XRLauncher (play-asset — test).
 - Artifacts: package-analysis/EU-google-removal-list.md, EU-redmagic-survival-list.md, EU-redmagic-gms-scan.tsv; docs/ARCHITECTURE.md recommends Approach A.
-- Relevance: NX789J-native, owner-build exact. Runtime confirmation still required (static ≠ proof of no crash-loop).
+- Relevance: NX789J-native, pinned EU firmware build. Runtime confirmation still required (static ≠ proof of no crash-loop).
 
 ## F-21 — Candidate v1 BUILT: 4 EROFS images + test-key AVB chain (VERIFIED, 2026-10-01)
+
+**Historical result, superseded by the 19 October audit.** The complete v1
+AVB chain fails the boot key comparison; its envelope sizes do not establish
+slot fit. The label census omitted root metadata and did not establish
+correct binary capabilities. Zstd was later replaced with LZ4HC. Do not use
+the original conclusions below as a hardware-test readiness statement.
 
 - Images (firmware-manifests/CANDIDATE-v1-signed.sha256): system 5,565,849,600 B
   (lz4), system_ext 737,755,136 B (zstd), product 1,992,269,824 B (lz4),
@@ -175,3 +181,26 @@ Each entry records source + date + relevance (NX789J-native vs sibling).
 - Virtual boot: BLOCKED (research/virtualization-blockers.md) — CHD needs
   AOSP target-files + ARM host + 100 GB build; Cuttlefish/QEMU/Emulator
   rejected with concrete grounds. Deepest off-device signal applied instead.
+
+## F-22 — Root metadata and binary xattrs were not preserved in v1 (2026-10-19)
+
+- Direct parsing of the v1 system image shows its filesystem root belongs
+  to UID/GID 1000 with mode 0777 and no SELinux xattr. The pinned stock system
+  image root is UID/GID 0, mode 0755, labelled `u:object_r:rootfs:s0`.
+  The tar builder omitted the root entry and let the image tool supply defaults.
+- The original `run-as` capability is binary. The v1 image instead stores
+  getfattr's printable `0s...` representation as the attribute's literal bytes.
+  Counting the attribute's presence did not verify its value.
+- The corrected builder requires original root metadata and uses base64
+  LIBARCHIVE xattr headers so erofs-utils restores the actual bytes. Vendor's
+  root GID 2000 is preserved rather than assuming every root is root:root.
+- Full-image comparison also found missing SELinux labels on symlinks in the
+  legacy FUSE-derived tables, including system `adb_keys` and `bin`.
+  `46c-stock-meta.py` now reads original inode metadata directly from stock
+  EROFS images, including roots, links and binary xattrs, without mounting.
+- A regression test compiles a miniature EROFS image and reads its root
+  ownership/mode/label and capability bytes directly. The full build now
+  audits every encoded inode against the intended tar and every surviving
+  stock path, then extracts and hashes the content/symlink tree.
+- These are source/candidate artifact findings, not observations about a
+  particular phone. Runtime compatibility and recovery remain separate gates.

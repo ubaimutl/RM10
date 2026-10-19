@@ -15,12 +15,25 @@ MTIME=1779121582  # stock build time UTC (deterministic)
 
 build_one() {
   part="$1"; fc="$2"; fbfb="$3"; prefix="$4"
+  python3 - "$REPO_ROOT/build/candidate-v2.json" "$part" "$OUT/tars/$part-root.json" <<'PY'
+import json, sys
+with open(sys.argv[3], 'w') as f:
+    json.dump(json.load(open(sys.argv[1]))['partitions'][sys.argv[2]]['root'], f)
+PY
   log "== $part: tar ..."
   python3 "$REPO_ROOT/scripts/47-build-tar.py" \
     "$CAND/$part" "$META/$part-meta.tsv" "$fc" "$fbfb" "$prefix" "$OUT/tars/$part.tar" \
-    --mtime "$MTIME"
+    --mtime "$MTIME" --root-metadata "$OUT/tars/$part-root.json"
   log "== $part: mkfs ..."
-  "$MKFS" -zlz4 -T"$MTIME" --mkfs-time "$OUT/$part.img" --tar=f "$OUT/tars/$part.tar" 2>&1 | tail -2
+  local compressor=(-zlz4)
+  case "$part" in
+    system_ext) compressor=(-zlz4hc,level=12) ;;
+    vendor) compressor=(-zlz4hc,level=12 -C131072) ;;
+  esac
+  # Pin the UUID and worker count as well as timestamps and compression.
+  local uuid
+  uuid="$(python3 -c 'import sys,uuid; print(uuid.uuid5(uuid.NAMESPACE_URL, "rm10-eu1105-v2/" + sys.argv[1]))' "$part")"
+  "$MKFS" "${compressor[@]}" -b4096 --workers=1 -U"$uuid" -T"$MTIME" --mkfs-time "$OUT/$part.img" --tar=f "$OUT/tars/$part.tar" 2>&1 | tail -2
   log "== $part: fsck ..."
   "$FSCK" "$OUT/$part.img" 2>&1 | tail -2
   log "== $part: $(stat -c%s "$OUT/$part.img") bytes sha256=$(sha256_of "$OUT/$part.img" | cut -c1-16)..."

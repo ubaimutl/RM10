@@ -1,6 +1,6 @@
 # RM10 status
 
-Updated: 19 October 2026.
+Updated: 21 October 2026.
 
 **Verdict: NOT READY FOR HARDWARE TESTING.** Two complete v2 builds pass host verification and have identical output bytes. The separate system-only profile also passes its complete host AVB chain. No hardware test is authorized or performed.
 
@@ -24,7 +24,27 @@ The host layout model evaluates only its supplied snapshot. Device-specific slot
 
 ## Hardware blockers
 
-1. A validated Virtual A/B write mechanism and complete shared-state inventory remain unproven. Image fit does not establish isolated writes or a usable fallback.
+The [21 October offline investigation](OFFLINE-TEST-PATH.md) establishes
+additional installation constraints: stock OTA trust excludes the candidate
+keys; an unmodified partial updater can add physical firmware copies; and
+recovery can fall back to overwriting source storage after snapshot failure.
+The source and binary evidence is in
+[offline-path-audit.json](../build/offline-path-audit.json).
+
+A subsequent [programmer/toolbox review](PROGRAMMER-REVIEW.md) obtained a
+specific NX789J programmer and verified its embedded certificate links,
+matching EU boot-firmware root, all four OEM and both QTI image signatures,
+and all nonempty segment hashes. Hardware acceptance is still unproven. The bundled
+unlock flow edits shared GPT/FRP and the current boot partition; it is not an
+inactive-slot-only procedure. The inspected ZTE EDL client's rawprogram restore
+path carries an explicit author warning and is excluded as a fallback.
+Five additional host tests cover the programmer checker. Twenty further tests
+cover a new [guarded reader](READ-TOOLS.md), mocked USB endpoints and saved GPT
+validation. The current host suite contains 37 passing tests. Hardware
+interoperability and session bootstrap remain unvalidated; no phone operations
+were performed. The programmer checker itself has no device transport.
+
+1. A trusted snapshot-aware installer with an audited complete write set is not established. Raw inactive writes, stock sideload and unmodified partial OTAs do not meet the current design. A nine-image nonpartial snapshot payload is a design option requiring further integration and validation.
 2. A feasible backup scope and demonstrated stock restore route on matching firmware are still required before destructive work.
 3. Hardware test-key acceptance, physical capacities, stored rollback constraints, boot-control flags and the bytes of retained target images must be established for the specific target.
 4. Boot and the REDMAGIC hardware/network acceptance matrix have not been run. Relocking is a separate unvalidated procedure.

@@ -2,6 +2,15 @@
 
 This is a design inventory. No executable hardware procedure is validated.
 
+**This table lists deliberate candidate image replacements, not every write
+an installer might perform.** The 21 October review found that the AOSP partial
+update path can synthesize additional physical A/B copies. With the pinned
+source properties, either proposed profile projects 32 such copies, including
+modem and boot firmware. That path violates the exclusions below and is not
+approved by this inventory. A nonpartial snapshot design would explicitly
+include the three unchanged ODM/DLKM images too, increasing the image list
+from six to nine. See [OFFLINE-TEST-PATH.md](OFFLINE-TEST-PATH.md).
+
 | Image | Full profile | System-only profile | Storage constraint |
 | --- | --- | --- | --- |
 | system | Rebuilt | Rebuilt | Logical partition in shared super; check actual mapping and overlap |
@@ -32,6 +41,8 @@ Any eventual procedure must also account for:
   databases and app state. Selecting another system slot does not restore
   that data to its previous state.
 - Super/shared update metadata changes during snapshot creation, merge or reallocation; userdata-backed COW storage is also possible. Establish the actual chosen implementation's writes.
+- Recovery's possible overwrite fallback after snapshot allocation failure; reject that fallback before treating the update as source-preserving.
+- Automatic merge after update verification. Once base blocks are merged, selecting the previous suffix does not restore the original system.
 - Separate recovery installation. The inspected OrangeFox instructions write both recovery copies; this cannot silently become part of a slot-isolated experiment.
 
 The published recovery binary's headers and ramdisk were inspected directly;

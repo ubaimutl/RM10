@@ -1,0 +1,664 @@
+{
+  "schema": 1,
+  "image": {
+    "bytes": 1679780,
+    "sha256": "0aab3f764c8ffa28ae84dee5bafb26f8ad21d6ee626adb375b1a1b483316783c",
+    "certificates": [
+      {
+        "offset": 175532,
+        "der_sha256": "1be41fe3bbb1f0f952dad1af20d7125d81b0b5d448f7bbed86a9701ac8a39617",
+        "spki_sha256": "86f3b936d7c75c7680d9feafec62b80f7a57e4a0701dc229fe4a5d3374e42a79",
+        "subject": "CN=CASS - SBL4,O=QUALCOMM,L=San Diego,ST=CA,C=US",
+        "self_issued": false,
+        "verified_parent_der_sha256": [
+          "945d44cef435817501a70bdc61c156c0ed550504a06580104ee62ffadb6d7403"
+        ]
+      },
+      {
+        "offset": 176162,
+        "der_sha256": "945d44cef435817501a70bdc61c156c0ed550504a06580104ee62ffadb6d7403",
+        "spki_sha256": "c341bc455e914c6641226f6a1220513534fde7beadfa4521fc3f33936c9c777d",
+        "subject": "CN=SRoT MBNv7 Image Signing Root CA 6 SubCA 1,OU=Qualcomm Cryptographic Operations,O=Qualcomm Technologies\\, Inc.",
+        "self_issued": false,
+        "verified_parent_der_sha256": [
+          "6d8d595fc1ad2f80383f266453f9b48b35f48a097cc81b1ec282161c561d47f6"
+        ]
+      },
+      {
+        "offset": 176850,
+        "der_sha256": "6d8d595fc1ad2f80383f266453f9b48b35f48a097cc81b1ec282161c561d47f6",
+        "spki_sha256": "3dd04a601c7109c690691a25016faf14dc9190ea118994a90aecdf2caa03fc66",
+        "subject": "CN=SRoT MBNv7 Image Signing Root CA 6,OU=Qualcomm Cryptographic Operations,O=Qualcomm Technologies\\, Inc.",
+        "self_issued": true,
+        "verified_parent_der_sha256": [
+          "6d8d595fc1ad2f80383f266453f9b48b35f48a097cc81b1ec282161c561d47f6"
+        ]
+      },
+      {
+        "offset": 178996,
+        "der_sha256": "e7d59229c0a18f83a1806b65f2d0b34a40357823697676e7714ff1d0e293cd25",
+        "spki_sha256": "d508bc1cf7399a0e53f9728152dd7919cd6c891f56786d54e99c84128e33801f",
+        "subject": "L=San Diego,O=SecTools,ST=California,C=US",
+        "self_issued": false,
+        "verified_parent_der_sha256": [
+          "52204e10d843a4d15f851871a14879694b5cb8f631b8298b0a8fb75082e799be"
+        ]
+      },
+      {
+        "offset": 179552,
+        "der_sha256": "52204e10d843a4d15f851871a14879694b5cb8f631b8298b0a8fb75082e799be",
+        "spki_sha256": "97da0c2504153d968242c0e8417186e0611b9c12495638c705126fbea7c4618b",
+        "subject": "CN=ZTE Signing CA,O=ZTE,OU=SMP,L=ShangHai,ST=CA,C=CN",
+        "self_issued": false,
+        "verified_parent_der_sha256": [
+          "c5930b6569c9e61faed1d9a3007b90478d83914c3667d3defc54f6a7ec65fed1"
+        ]
+      },
+      {
+        "offset": 180155,
+        "der_sha256": "c5930b6569c9e61faed1d9a3007b90478d83914c3667d3defc54f6a7ec65fed1",
+        "spki_sha256": "89c9ce097415b63292860aa5dae1fc5feaf79b44cad665ebd1bf09926525bd3b",
+        "subject": "CN=ZTE Signing Root,O=ZTE,OU=SMP,L=ShangHai,ST=ShangHai,C=CN",
+        "self_issued": true,
+        "verified_parent_der_sha256": [
+          "c5930b6569c9e61faed1d9a3007b90478d83914c3667d3defc54f6a7ec65fed1"
+        ]
+      },
+      {
+        "offset": 1153420,
+        "der_sha256": "e5ba0d7f5ccb47da6d6d30dc4f0450226ce248c7747dbbd1b16f7ff604fffbdf",
+        "spki_sha256": "49c0b0d3c6916ca242be37f73ceb3964941e5d2b8865eb7873b33c2d2070e6ba",
+        "subject": "CN=CASS - SBL4,O=QUALCOMM,L=San Diego,ST=CA,C=US",
+        "self_issued": false,
+        "verified_parent_der_sha256": [
+          "945d44cef435817501a70bdc61c156c0ed550504a06580104ee62ffadb6d7403"
+        ]
+      },
+      {
+        "offset": 1154048,
+        "der_sha256": "945d44cef435817501a70bdc61c156c0ed550504a06580104ee62ffadb6d7403",
+        "spki_sha256": "c341bc455e914c6641226f6a1220513534fde7beadfa4521fc3f33936c9c777d",
+        "subject": "CN=SRoT MBNv7 Image Signing Root CA 6 SubCA 1,OU=Qualcomm Cryptographic Operations,O=Qualcomm Technologies\\, Inc.",
+        "self_issued": false,
+        "verified_parent_der_sha256": [
+          "6d8d595fc1ad2f80383f266453f9b48b35f48a097cc81b1ec282161c561d47f6"
+        ]
+      },
+      {
+        "offset": 1154736,
+        "der_sha256": "6d8d595fc1ad2f80383f266453f9b48b35f48a097cc81b1ec282161c561d47f6",
+        "spki_sha256": "3dd04a601c7109c690691a25016faf14dc9190ea118994a90aecdf2caa03fc66",
+        "subject": "CN=SRoT MBNv7 Image Signing Root CA 6,OU=Qualcomm Cryptographic Operations,O=Qualcomm Technologies\\, Inc.",
+        "self_issued": true,
+        "verified_parent_der_sha256": [
+          "6d8d595fc1ad2f80383f266453f9b48b35f48a097cc81b1ec282161c561d47f6"
+        ]
+      },
+      {
+        "offset": 1156884,
+        "der_sha256": "e5dfb40e31add27b651e8120ebb5b3c43e79b23ba0914864a6f640f08c52ea1a",
+        "spki_sha256": "24d0ad3f9d85a53a41f78f0d25866ed621e32aa32b34a4d935782fef5bab88dd",
+        "subject": "L=San Diego,O=SecTools,ST=California,C=US",
+        "self_issued": false,
+        "verified_parent_der_sha256": [
+          "52204e10d843a4d15f851871a14879694b5cb8f631b8298b0a8fb75082e799be"
+        ]
+      },
+      {
+        "offset": 1157438,
+        "der_sha256": "52204e10d843a4d15f851871a14879694b5cb8f631b8298b0a8fb75082e799be",
+        "spki_sha256": "97da0c2504153d968242c0e8417186e0611b9c12495638c705126fbea7c4618b",
+        "subject": "CN=ZTE Signing CA,O=ZTE,OU=SMP,L=ShangHai,ST=CA,C=CN",
+        "self_issued": false,
+        "verified_parent_der_sha256": [
+          "c5930b6569c9e61faed1d9a3007b90478d83914c3667d3defc54f6a7ec65fed1"
+        ]
+      },
+      {
+        "offset": 1158041,
+        "der_sha256": "c5930b6569c9e61faed1d9a3007b90478d83914c3667d3defc54f6a7ec65fed1",
+        "spki_sha256": "89c9ce097415b63292860aa5dae1fc5feaf79b44cad665ebd1bf09926525bd3b",
+        "subject": "CN=ZTE Signing Root,O=ZTE,OU=SMP,L=ShangHai,ST=ShangHai,C=CN",
+        "self_issued": true,
+        "verified_parent_der_sha256": [
+          "c5930b6569c9e61faed1d9a3007b90478d83914c3667d3defc54f6a7ec65fed1"
+        ]
+      },
+      {
+        "offset": 1475628,
+        "der_sha256": "ad07a9d40af15aa631c9f7009a9c34eff43fa2b32cf754af1680217c173e5fc3",
+        "spki_sha256": "b63cf2ba33e4f8ffb023484df48ccff86b1a6c909c59680fed36d2e317c443eb",
+        "subject": "L=San Diego,O=SecTools,ST=California,C=US",
+        "self_issued": false,
+        "verified_parent_der_sha256": [
+          "52204e10d843a4d15f851871a14879694b5cb8f631b8298b0a8fb75082e799be"
+        ]
+      },
+      {
+        "offset": 1476182,
+        "der_sha256": "52204e10d843a4d15f851871a14879694b5cb8f631b8298b0a8fb75082e799be",
+        "spki_sha256": "97da0c2504153d968242c0e8417186e0611b9c12495638c705126fbea7c4618b",
+        "subject": "CN=ZTE Signing CA,O=ZTE,OU=SMP,L=ShangHai,ST=CA,C=CN",
+        "self_issued": false,
+        "verified_parent_der_sha256": [
+          "c5930b6569c9e61faed1d9a3007b90478d83914c3667d3defc54f6a7ec65fed1"
+        ]
+      },
+      {
+        "offset": 1476785,
+        "der_sha256": "c5930b6569c9e61faed1d9a3007b90478d83914c3667d3defc54f6a7ec65fed1",
+        "spki_sha256": "89c9ce097415b63292860aa5dae1fc5feaf79b44cad665ebd1bf09926525bd3b",
+        "subject": "CN=ZTE Signing Root,O=ZTE,OU=SMP,L=ShangHai,ST=ShangHai,C=CN",
+        "self_issued": true,
+        "verified_parent_der_sha256": [
+          "c5930b6569c9e61faed1d9a3007b90478d83914c3667d3defc54f6a7ec65fed1"
+        ]
+      },
+      {
+        "offset": 1676420,
+        "der_sha256": "b0c8eb3a3e86c9e78106d3502e6992fbe62ca260719fa04c5cfda8a7461e9311",
+        "spki_sha256": "60cf8660203ac1208ffbadaee3a1d4a59c8ead69e5e2be8be0d7b7fa149010a5",
+        "subject": "L=San Diego,O=SecTools,ST=California,C=US",
+        "self_issued": false,
+        "verified_parent_der_sha256": [
+          "52204e10d843a4d15f851871a14879694b5cb8f631b8298b0a8fb75082e799be"
+        ]
+      },
+      {
+        "offset": 1676975,
+        "der_sha256": "52204e10d843a4d15f851871a14879694b5cb8f631b8298b0a8fb75082e799be",
+        "spki_sha256": "97da0c2504153d968242c0e8417186e0611b9c12495638c705126fbea7c4618b",
+        "subject": "CN=ZTE Signing CA,O=ZTE,OU=SMP,L=ShangHai,ST=CA,C=CN",
+        "self_issued": false,
+        "verified_parent_der_sha256": [
+          "c5930b6569c9e61faed1d9a3007b90478d83914c3667d3defc54f6a7ec65fed1"
+        ]
+      },
+      {
+        "offset": 1677578,
+        "der_sha256": "c5930b6569c9e61faed1d9a3007b90478d83914c3667d3defc54f6a7ec65fed1",
+        "spki_sha256": "89c9ce097415b63292860aa5dae1fc5feaf79b44cad665ebd1bf09926525bd3b",
+        "subject": "CN=ZTE Signing Root,O=ZTE,OU=SMP,L=ShangHai,ST=ShangHai,C=CN",
+        "self_issued": true,
+        "verified_parent_der_sha256": [
+          "c5930b6569c9e61faed1d9a3007b90478d83914c3667d3defc54f6a7ec65fed1"
+        ]
+      }
+    ],
+    "mbnv7": [
+      {
+        "elf_offset": 2308,
+        "hash_segment_offset": 174340,
+        "mbn_version": 7,
+        "oem_image_signature_verified": true,
+        "software_id": 53,
+        "hash_algorithm_id": 3,
+        "segment_hash_checks": [
+          {
+            "index": 0,
+            "file_bytes": 436,
+            "is_hash_segment": false,
+            "zero_hash_entry": false,
+            "sha384_matches": true
+          },
+          {
+            "index": 1,
+            "file_bytes": 0,
+            "is_hash_segment": false,
+            "zero_hash_entry": true,
+            "sha384_matches": false
+          },
+          {
+            "index": 2,
+            "file_bytes": 0,
+            "is_hash_segment": false,
+            "zero_hash_entry": true,
+            "sha384_matches": false
+          },
+          {
+            "index": 3,
+            "file_bytes": 0,
+            "is_hash_segment": false,
+            "zero_hash_entry": true,
+            "sha384_matches": false
+          },
+          {
+            "index": 4,
+            "file_bytes": 0,
+            "is_hash_segment": false,
+            "zero_hash_entry": true,
+            "sha384_matches": false
+          },
+          {
+            "index": 5,
+            "file_bytes": 129812,
+            "is_hash_segment": false,
+            "zero_hash_entry": false,
+            "sha384_matches": true
+          },
+          {
+            "index": 6,
+            "file_bytes": 27912,
+            "is_hash_segment": false,
+            "zero_hash_entry": false,
+            "sha384_matches": true
+          },
+          {
+            "index": 7,
+            "file_bytes": 7296,
+            "is_hash_segment": false,
+            "zero_hash_entry": false,
+            "sha384_matches": true
+          },
+          {
+            "index": 8,
+            "file_bytes": 0,
+            "is_hash_segment": false,
+            "zero_hash_entry": true,
+            "sha384_matches": false
+          },
+          {
+            "index": 9,
+            "file_bytes": 0,
+            "is_hash_segment": false,
+            "zero_hash_entry": true,
+            "sha384_matches": false
+          },
+          {
+            "index": 10,
+            "file_bytes": 0,
+            "is_hash_segment": false,
+            "zero_hash_entry": true,
+            "sha384_matches": false
+          },
+          {
+            "index": 11,
+            "file_bytes": 11376,
+            "is_hash_segment": true,
+            "zero_hash_entry": true,
+            "sha384_matches": false
+          }
+        ],
+        "nonzero_segment_hashes_match": true,
+        "unverified_zero_nonhash_entries": [],
+        "qti_image_signature_verified": true,
+        "dual_authority_view_normalization": "other authority lengths and metadata bytes zeroed"
+      },
+      {
+        "elf_offset": 185716,
+        "hash_segment_offset": 1152372,
+        "mbn_version": 7,
+        "oem_image_signature_verified": true,
+        "software_id": 54,
+        "hash_algorithm_id": 3,
+        "segment_hash_checks": [
+          {
+            "index": 0,
+            "file_bytes": 568,
+            "is_hash_segment": false,
+            "zero_hash_entry": false,
+            "sha384_matches": true
+          },
+          {
+            "index": 1,
+            "file_bytes": 0,
+            "is_hash_segment": false,
+            "zero_hash_entry": true,
+            "sha384_matches": false
+          },
+          {
+            "index": 2,
+            "file_bytes": 585728,
+            "is_hash_segment": false,
+            "zero_hash_entry": false,
+            "sha384_matches": true
+          },
+          {
+            "index": 3,
+            "file_bytes": 0,
+            "is_hash_segment": false,
+            "zero_hash_entry": true,
+            "sha384_matches": false
+          },
+          {
+            "index": 4,
+            "file_bytes": 77824,
+            "is_hash_segment": false,
+            "zero_hash_entry": false,
+            "sha384_matches": true
+          },
+          {
+            "index": 5,
+            "file_bytes": 217088,
+            "is_hash_segment": false,
+            "zero_hash_entry": false,
+            "sha384_matches": true
+          },
+          {
+            "index": 6,
+            "file_bytes": 81920,
+            "is_hash_segment": false,
+            "zero_hash_entry": false,
+            "sha384_matches": true
+          },
+          {
+            "index": 7,
+            "file_bytes": 0,
+            "is_hash_segment": false,
+            "zero_hash_entry": true,
+            "sha384_matches": false
+          },
+          {
+            "index": 8,
+            "file_bytes": 11232,
+            "is_hash_segment": true,
+            "zero_hash_entry": true,
+            "sha384_matches": false
+          }
+        ],
+        "nonzero_segment_hashes_match": true,
+        "unverified_zero_nonhash_entries": [],
+        "qti_image_signature_verified": true,
+        "dual_authority_view_normalization": "other authority lengths and metadata bytes zeroed"
+      },
+      {
+        "elf_offset": 1163604,
+        "hash_segment_offset": 1474900,
+        "mbn_version": 7,
+        "oem_image_signature_verified": true,
+        "software_id": 3,
+        "hash_algorithm_id": 3,
+        "segment_hash_checks": [
+          {
+            "index": 0,
+            "file_bytes": 456,
+            "is_hash_segment": false,
+            "zero_hash_entry": false,
+            "sha384_matches": true
+          },
+          {
+            "index": 1,
+            "file_bytes": 241664,
+            "is_hash_segment": false,
+            "zero_hash_entry": false,
+            "sha384_matches": true
+          },
+          {
+            "index": 2,
+            "file_bytes": 40960,
+            "is_hash_segment": false,
+            "zero_hash_entry": false,
+            "sha384_matches": true
+          },
+          {
+            "index": 3,
+            "file_bytes": 0,
+            "is_hash_segment": false,
+            "zero_hash_entry": true,
+            "sha384_matches": false
+          },
+          {
+            "index": 4,
+            "file_bytes": 24576,
+            "is_hash_segment": false,
+            "zero_hash_entry": false,
+            "sha384_matches": true
+          },
+          {
+            "index": 5,
+            "file_bytes": 0,
+            "is_hash_segment": false,
+            "zero_hash_entry": true,
+            "sha384_matches": false
+          },
+          {
+            "index": 6,
+            "file_bytes": 4088,
+            "is_hash_segment": true,
+            "zero_hash_entry": true,
+            "sha384_matches": false
+          }
+        ],
+        "nonzero_segment_hashes_match": true,
+        "unverified_zero_nonhash_entries": []
+      },
+      {
+        "elf_offset": 1478988,
+        "hash_segment_offset": 1675596,
+        "mbn_version": 7,
+        "oem_image_signature_verified": true,
+        "software_id": 37,
+        "hash_algorithm_id": 3,
+        "segment_hash_checks": [
+          {
+            "index": 0,
+            "file_bytes": 568,
+            "is_hash_segment": false,
+            "zero_hash_entry": false,
+            "sha384_matches": true
+          },
+          {
+            "index": 1,
+            "file_bytes": 348,
+            "is_hash_segment": false,
+            "zero_hash_entry": false,
+            "sha384_matches": true
+          },
+          {
+            "index": 2,
+            "file_bytes": 51204,
+            "is_hash_segment": false,
+            "zero_hash_entry": false,
+            "sha384_matches": true
+          },
+          {
+            "index": 3,
+            "file_bytes": 32096,
+            "is_hash_segment": false,
+            "zero_hash_entry": false,
+            "sha384_matches": true
+          },
+          {
+            "index": 4,
+            "file_bytes": 4064,
+            "is_hash_segment": false,
+            "zero_hash_entry": false,
+            "sha384_matches": true
+          },
+          {
+            "index": 5,
+            "file_bytes": 51204,
+            "is_hash_segment": false,
+            "zero_hash_entry": false,
+            "sha384_matches": true
+          },
+          {
+            "index": 6,
+            "file_bytes": 51204,
+            "is_hash_segment": false,
+            "zero_hash_entry": false,
+            "sha384_matches": true
+          },
+          {
+            "index": 7,
+            "file_bytes": 3844,
+            "is_hash_segment": false,
+            "zero_hash_entry": false,
+            "sha384_matches": true
+          },
+          {
+            "index": 8,
+            "file_bytes": 4184,
+            "is_hash_segment": true,
+            "zero_hash_entry": true,
+            "sha384_matches": false
+          }
+        ],
+        "nonzero_segment_hashes_match": true,
+        "unverified_zero_nonhash_entries": []
+      }
+    ],
+    "complete_programmer_authentication_established": false,
+    "hardware_acceptance_established": false
+  },
+  "references": [
+    {
+      "bytes": 245760,
+      "sha256": "ded49ef2064f3d8a92320acbc4d4df414067fd0384f8744980442b2fe5850ce7",
+      "certificates": [
+        {
+          "offset": 242200,
+          "der_sha256": "ca9443600e725ba45b19dcbfbe5292fce38b968fcb2963636579d48f8ea584b5",
+          "spki_sha256": "39430847be1a2538928404a4600339c3efa6d10d1a3eb96550f1bf12a502f540",
+          "subject": "L=San Diego,O=SecTools,ST=California,C=US",
+          "self_issued": false,
+          "verified_parent_der_sha256": [
+            "52204e10d843a4d15f851871a14879694b5cb8f631b8298b0a8fb75082e799be"
+          ]
+        },
+        {
+          "offset": 242755,
+          "der_sha256": "52204e10d843a4d15f851871a14879694b5cb8f631b8298b0a8fb75082e799be",
+          "spki_sha256": "97da0c2504153d968242c0e8417186e0611b9c12495638c705126fbea7c4618b",
+          "subject": "CN=ZTE Signing CA,O=ZTE,OU=SMP,L=ShangHai,ST=CA,C=CN",
+          "self_issued": false,
+          "verified_parent_der_sha256": [
+            "c5930b6569c9e61faed1d9a3007b90478d83914c3667d3defc54f6a7ec65fed1"
+          ]
+        },
+        {
+          "offset": 243358,
+          "der_sha256": "c5930b6569c9e61faed1d9a3007b90478d83914c3667d3defc54f6a7ec65fed1",
+          "spki_sha256": "89c9ce097415b63292860aa5dae1fc5feaf79b44cad665ebd1bf09926525bd3b",
+          "subject": "CN=ZTE Signing Root,O=ZTE,OU=SMP,L=ShangHai,ST=ShangHai,C=CN",
+          "self_issued": true,
+          "verified_parent_der_sha256": [
+            "c5930b6569c9e61faed1d9a3007b90478d83914c3667d3defc54f6a7ec65fed1"
+          ]
+        }
+      ],
+      "mbnv7": [
+        {
+          "elf_offset": 0,
+          "hash_segment_offset": 241664,
+          "mbn_version": 7,
+          "oem_image_signature_verified": true,
+          "software_id": 28,
+          "hash_algorithm_id": 3,
+          "segment_hash_checks": [
+            {
+              "index": 0,
+              "file_bytes": 148,
+              "is_hash_segment": false,
+              "zero_hash_entry": false,
+              "sha384_matches": true
+            },
+            {
+              "index": 1,
+              "file_bytes": 237568,
+              "is_hash_segment": false,
+              "zero_hash_entry": false,
+              "sha384_matches": true
+            },
+            {
+              "index": 2,
+              "file_bytes": 3896,
+              "is_hash_segment": true,
+              "zero_hash_entry": true,
+              "sha384_matches": false
+            }
+          ],
+          "nonzero_segment_hashes_match": true,
+          "unverified_zero_nonhash_entries": []
+        }
+      ],
+      "complete_programmer_authentication_established": false,
+      "hardware_acceptance_established": false,
+      "matching_embedded_root_spki_sha256": [
+        "89c9ce097415b63292860aa5dae1fc5feaf79b44cad665ebd1bf09926525bd3b"
+      ]
+    },
+    {
+      "bytes": 2793472,
+      "sha256": "42d9a5179c759dcc2c79dc110aad95a990b0ed4f313db960ad0835d347e50bc8",
+      "certificates": [
+        {
+          "offset": 2789912,
+          "der_sha256": "0a1409175ab8d05605799ffddcc7f8815a3a817e136853419644700316c219b4",
+          "spki_sha256": "c1db030ca3905f3abe345269fdb2a2730e8d1759112cd7fd4340be44328d711e",
+          "subject": "L=San Diego,O=SecTools,ST=California,C=US",
+          "self_issued": false,
+          "verified_parent_der_sha256": [
+            "52204e10d843a4d15f851871a14879694b5cb8f631b8298b0a8fb75082e799be"
+          ]
+        },
+        {
+          "offset": 2790466,
+          "der_sha256": "52204e10d843a4d15f851871a14879694b5cb8f631b8298b0a8fb75082e799be",
+          "spki_sha256": "97da0c2504153d968242c0e8417186e0611b9c12495638c705126fbea7c4618b",
+          "subject": "CN=ZTE Signing CA,O=ZTE,OU=SMP,L=ShangHai,ST=CA,C=CN",
+          "self_issued": false,
+          "verified_parent_der_sha256": [
+            "c5930b6569c9e61faed1d9a3007b90478d83914c3667d3defc54f6a7ec65fed1"
+          ]
+        },
+        {
+          "offset": 2791069,
+          "der_sha256": "c5930b6569c9e61faed1d9a3007b90478d83914c3667d3defc54f6a7ec65fed1",
+          "spki_sha256": "89c9ce097415b63292860aa5dae1fc5feaf79b44cad665ebd1bf09926525bd3b",
+          "subject": "CN=ZTE Signing Root,O=ZTE,OU=SMP,L=ShangHai,ST=ShangHai,C=CN",
+          "self_issued": true,
+          "verified_parent_der_sha256": [
+            "c5930b6569c9e61faed1d9a3007b90478d83914c3667d3defc54f6a7ec65fed1"
+          ]
+        }
+      ],
+      "mbnv7": [
+        {
+          "elf_offset": 0,
+          "hash_segment_offset": 2789376,
+          "mbn_version": 7,
+          "oem_image_signature_verified": true,
+          "software_id": 9,
+          "hash_algorithm_id": 3,
+          "segment_hash_checks": [
+            {
+              "index": 0,
+              "file_bytes": 232,
+              "is_hash_segment": false,
+              "zero_hash_entry": false,
+              "sha384_matches": true
+            },
+            {
+              "index": 1,
+              "file_bytes": 2785280,
+              "is_hash_segment": false,
+              "zero_hash_entry": false,
+              "sha384_matches": true
+            },
+            {
+              "index": 2,
+              "file_bytes": 3896,
+              "is_hash_segment": true,
+              "zero_hash_entry": true,
+              "sha384_matches": false
+            }
+          ],
+          "nonzero_segment_hashes_match": true,
+          "unverified_zero_nonhash_entries": []
+        }
+      ],
+      "complete_programmer_authentication_established": false,
+      "hardware_acceptance_established": false,
+      "matching_embedded_root_spki_sha256": [
+        "89c9ce097415b63292860aa5dae1fc5feaf79b44cad665ebd1bf09926525bd3b"
+      ]
+    }
+  ],
+  "hardware_test_authorized": false,
+  "negative_controls": {
+    "reference_code_bitflip_detected": true,
+    "signed_hash_table_bitflip_detected": true
+  },
+  "synthetic_controls_passed": 5
+}

@@ -1,0 +1,70 @@
+{
+  "schema": 1,
+  "review_date": "2026-10-21",
+  "scope": "Public tool artifacts and pinned EU firmware only; no phone observations",
+  "hardware_test_authorized": false,
+  "toolbox": {
+    "version": "1.2.4-beta1",
+    "archive_bytes": 35983533,
+    "archive_sha256": "82965b165615cbe498ab48aaf2a1612d22ec8f8b6071dc1e206560583241d416",
+    "download_page": "https://drive.google.com/file/d/1DfpTdhVx4uGPiFJQh0Xw9wKP5BGwbpBP/view",
+    "link_provenance": "RM10 community wiki download table; original XDA page was inaccessible during this review",
+    "independent_publisher_digest_established": false,
+    "archive_executed": false,
+    "device_profile": "NX789J; UFS; AVB unlock route; FRP modification enabled; ab_rec; init_boot; ZTE configure",
+    "programmer_path_in_archive": "bin/res/NX789J/devprg",
+    "programmer_bytes": 1679780,
+    "programmer_sha256": "0aab3f764c8ffa28ae84dee5bafb26f8ad21d6ee626adb375b1a1b483316783c",
+    "unlock_script_static_write_scope": [
+      "LUN4 GPT entries",
+      "current boot partition",
+      "FRP",
+      "boot-control slot selection",
+      "misc wipe request when unlock confirmed"
+    ],
+    "unlock_flow_is_not_inactive_slot_only": true,
+    "unlock_payload_bytes": 2707456,
+    "unlock_payload_sha256": "87f077c1dd566fd8e98324c9e8c8232161528bb4a0cfce10424b1957e742d17d",
+    "raw_scripts_sha256": {
+      "\u4e2d\u5174\u5bb6\u65cf\u5de5\u5177\u7bb1.bat": "c01e6466845cb97e51a7b8e7b4cb92377e9ddb820534abc490a654046ce5c4f2",
+      "bin/ztetoolbox.bat": "833a56783606d6a5d65371438f17569400a0600d19d0f1f9fc4882bc05f5958f",
+      "bin/write.bat": "c9581b42a981a1aed53a9ffb0f845d627db0a87d8913434e9218b9b425500066",
+      "bin/read.bat": "f0b918ea0c4ae8db809c16c3c21dadc5a629a84947a2562a9c83b9e3e6a625ce",
+      "bin/slot.bat": "4250add02e8378800dad0b6e085be00c7669c42bc76af1ea01652d629b15dfe5",
+      "bin/partable.bat": "6cff7e28f7a947b730999db50e8e1b430a1eb9ce16b3d7e985b46d608093993d"
+    }
+  },
+  "programmer_checks": {
+    "evidence": "programmer-audit.json",
+    "embedded_root_spki_matches_eu_abl_and_uefi": true,
+    "embedded_certificate_count": 18,
+    "certificate_signature_links_verified": 18,
+    "oem_only_image_signatures_verified": 2,
+    "dual_authority_image_signatures_unresolved": 0,
+    "all_nonzero_segment_hashes_match": true,
+    "complete_bundle_authentication_established": false,
+    "hardware_acceptance_established": false,
+    "oem_image_signatures_verified": 4,
+    "qti_image_signatures_verified": 2,
+    "nonempty_segment_hash_coverage_complete": true,
+    "unsigned_outer_bundle_container_authentication_established": false
+  },
+  "edl_ng": {
+    "repository": "https://github.com/SnowFuhrer/edl-ng",
+    "commit": "f709579ceb8d4fee54a167e5cb1b9970b8d543d1",
+    "source_zip_sha256": "80c36c1fb25d3165c78fa8d23a9fff472591a388b57e133b09b465af18ec1849",
+    "author_warns_rawprogram_restore_can_brick": true,
+    "rawprogram_restore_excluded": true,
+    "read_path_hardware_validated": false
+  },
+  "format_reference": {
+    "url": "https://github.com/coreboot/coreboot/blob/812d0e2f626dfea7e7deb960a8dc08ff0e026bc1/util/qualcomm/mbn_tools.py",
+    "download_sha256": "40e77b4c99cdca015d56ef87d60dd4eff9a08e2604006b65913343fa923405b5"
+  },
+  "host_controls": {
+    "synthetic_programmer_tests_passed": 5,
+    "real_reference_code_and_hash_table_corruption_controls_passed": true
+  },
+  "next_gate": "Review/bootstrap an explicitly authorized loader session and establish guarded-reader hardware interoperability; no device action is authorized by host tests",
+  "guarded_reader_evidence": "read-guard-validation.json"
+}

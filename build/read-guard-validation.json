@@ -1,0 +1,63 @@
+{
+  "schema": 1,
+  "review_date": "2026-10-21",
+  "scope": "Host protocol, file-output and GPT safeguards with simulated transports only",
+  "hardware_validated": false,
+  "phone_access_performed": false,
+  "hardware_test_authorized": false,
+  "tests": {
+    "new_read_guard_tests_passed": 20,
+    "complete_host_suite_passed": 37
+  },
+  "source_sha256": {
+    "scripts/rm10_read_guard.py": "6c531cff09dbd3d7c9cc2aa919bf53fc1abafdc5f03d8a29ee1f34743963597e",
+    "scripts/57-read-firehose.py": "3f0efc692050cfbd5d48ff539a275fc440a558cdd0fd1c3c13b39243fe09de3f",
+    "tests/test_read_guard.py": "5c49f61ea7e4b9b0bc87ccc15a1418067ebe27a04845fcf317c89e8562a90f50"
+  },
+  "host_usb_dependency": {
+    "pyusb_version": "1.3.1",
+    "real_usb_enumeration_or_transfer_in_tests": false,
+    "installed_source_inspected_for_configuration_and_endpoint_behavior": true
+  },
+  "outbound_xml_commands": [
+    "configure",
+    "getstorageinfo",
+    "read"
+  ],
+  "startup": {
+    "offline_validation_default": true,
+    "explicit_existing_firehose_attachment_required": true,
+    "all_usb_selectors_required": true,
+    "confirmed_alternate_setting_zero_only": true,
+    "loader_upload_implemented": false,
+    "automatic_reset_or_reconnect": false
+  },
+  "bounds": {
+    "max_response_frame_bytes": 65536,
+    "max_response_frames": 32,
+    "max_read_chunk_bytes": 1048576,
+    "default_total_output_bytes": 67108864,
+    "default_operation_timeout_seconds": 10,
+    "max_operation_timeout_seconds": 30
+  },
+  "checks": [
+    "matching geometry reports for every planned LUN",
+    "supported UFS sector size and capacity",
+    "strict numeric range and byte limits",
+    "raw-mode entry ACK and terminal raw-mode exit ACK",
+    "exact transfer lengths and matching repeated chunk hashes",
+    "faulted sessions cannot resume",
+    "forbidden XML commands rejected before transport",
+    "partial outputs removed and existing outputs not overwritten",
+    "device output excluded from public repository paths",
+    "saved primary and backup GPT CRC, geometry and overlap validation"
+  ],
+  "limitations": [
+    "only attaches to an independently established Firehose session",
+    "PyUSB backend behavior and real hardware framing remain untested",
+    "device-reported geometry is not independent physical measurement",
+    "host request restrictions do not establish absence of programmer side effects",
+    "chunk repeat matching is not a globally consistent snapshot",
+    "read completion is not complete backup or restore proof"
+  ]
+}

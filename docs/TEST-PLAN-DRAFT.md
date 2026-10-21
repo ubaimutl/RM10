@@ -4,6 +4,8 @@ The former draft assumed B was inactive and A was an independent stock fallback.
 
 ## Gate 0: host artifacts
 
+- Choose an installer execution/trust path and audit runtime writes, not only payload entries. Reject the partial-update implicit-copy and recovery overwrite fallbacks identified in [OFFLINE-TEST-PATH.md](OFFLINE-TEST-PATH.md).
+
 - Reassemble the stage from pinned stock inputs and donors and verify its content identity.
 - Build twice with pinned compression, UUIDs, timestamps, salts, keys and tools. Compare tar, raw EROFS and final image hashes.
 - Require a complete passing AVB chain with stock boot/recovery descriptors and rollback policy preserved. Verify each experimental profile independently.

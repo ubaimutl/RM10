@@ -1,0 +1,215 @@
+{
+  "schema": 1,
+  "review_date": "2026-10-21",
+  "scope": "Pinned official EU firmware and public source; no device observations",
+  "hardware_test_authorized": false,
+  "source_revisions": {
+    "avb": "5ac0c3a071d811846a62412383dd6e259f341e6e",
+    "update-engine": "2da98fe459c01d8902ea68b3fb2090578f49c8f6",
+    "recovery": "80fbea7e9af1dd883f2046e9b299d6fe45a0f693",
+    "core": "68be0c2c0006a0740d0b1809abe4717308f90d15"
+  },
+  "source_file_sha256": {
+    "update_metadata.proto": "09da1556e3edb9197ca88103b22ea07230a634c004605d4aa1efee6a6ed6e60d",
+    "payload_verifier.cc": "cbb9093bbc37ec64d30735c342cb3e2be8c768a146a662893152edc585b31194",
+    "delta_performer.cc": "693ad82e4eb00324fa711b9c54a94cd94c9f2d516281d807f561efbc03d71f5b",
+    "dynamic_partition_control_android.cc": "e23f5c0c2fca3e2dd6ded4b7a50a82d5ce691d6eb21c2b6d39e3e1830f453a20",
+    "partition_update_generator_android.cc": "ba1924418f2cbbd8414574c15723ac7561f81633bc8845b16c6e02bdb154f972",
+    "avb_slot_verify.c": "a94280664bfa734e21202f714f26784591f3f02790c0c5ad70cccc7f8172bba4",
+    "fs_avb.cpp": "0cf31f1d83b08913da73e963dc407d925f5cf7e6f9941f5b320a9b67bf9055aa",
+    "avb_util.cpp": "2771a78dc1a93f096c74ce2589e37a8b2286b34373ff020abf14b4ba3737fcd0",
+    "snapshot.cpp": "9dc6097ddaa9047fc0815531e441f22aec4a54c845e82012a312a448030139c7",
+    "recovery-install.cpp": "a15c8ff8f9da15aa05f3a6bae67f090062cfd48892ab640c6ced2775bfc136c6",
+    "recovery-verifier.cpp": "f54d70b5b1a16b8898af5bc20f1ce7fedfbe143a35848e96eecc1927932feb34",
+    "update_attempter_android.cc": "05a650f6a0df23143ece4f1acfb48240c9002139b8683e0a6b5fddffbdb3357d"
+  },
+  "ota": {
+    "payload_version": 2,
+    "minor_version": 0,
+    "partial_update": false,
+    "manifest_bytes": 302370,
+    "manifest_sha256": "101579a21b30c546642a9dc1567428b3e643767aa8385f1b955f14a5a1491f8f",
+    "partition_count": 42,
+    "dynamic_metadata": "groups {\n  name: \"qti_dynamic_partitions\"\n  size: 17175674880\n  partition_names: \"odm\"\n  partition_names: \"product\"\n  partition_names: \"system\"\n  partition_names: \"system_dlkm\"\n  partition_names: \"system_ext\"\n  partition_names: \"vendor\"\n  partition_names: \"vendor_dlkm\"\n}\nsnapshot_enabled: true\nvabc_enabled: true\nvabc_compression_param: \"lz4\"\ncow_version: 3\ncompression_factor: 65536\n",
+    "metadata_signatures": [
+      {
+        "store": "system",
+        "certificate": "releasekey.x509.pem",
+        "spki_sha256": "d4b0eaebe9974885528b9b9ffe7a365fc363e17a1508f1a0c85f79d23aa4d3d0",
+        "metadata_signature_valid": true
+      },
+      {
+        "store": "recovery",
+        "certificate": "releasekey.x509.pem",
+        "spki_sha256": "d4b0eaebe9974885528b9b9ffe7a365fc363e17a1508f1a0c85f79d23aa4d3d0",
+        "metadata_signature_valid": true
+      }
+    ],
+    "official_zip_certificate_spki_sha256": "d4b0eaebe9974885528b9b9ffe7a365fc363e17a1508f1a0c85f79d23aa4d3d0",
+    "candidate_keys": [
+      {
+        "key_role": "candidate-testkey",
+        "spki_sha256": "fc964eeb1c3d971ee5dedea9ce3f535bc3c39bd579e7535fdb4bb8836b27b6ea",
+        "in_stock_ota_trust": false
+      },
+      {
+        "key_role": "candidate-topkey",
+        "spki_sha256": "416b8cee644951afc312c7920841650dc37d29d87034dd6a3012122f168dfc17",
+        "in_stock_ota_trust": false
+      }
+    ]
+  },
+  "source_ota_has_programmer_or_factory_xml": false,
+  "stock_ota_has_postinstall_operations": false,
+  "stock_ota_dynamic_cow_estimates_are_not_candidate_estimates": true,
+  "stock_ota_dynamic_cow_estimate_sum": 10082897743,
+  "stock_update_engine": {
+    "sha256": "92544ba13b73845646677038d3ad17b961d7296abd9eca240dea6bb3682ec8a7",
+    "markers": {
+      "ro.vendor.build.ab_ota_partitions": 133079,
+      "Failed to generate operations for partitions not in payload": 200897,
+      "has included in payload": 174623,
+      "Attempt to overwrite existing partitions if possible": 164057,
+      "/system/etc/security/otacerts.zip": 233927,
+      "Verifying using certificates:": 101176,
+      "PrepareSnapshotPartitionsForUpdate failed in Android": 121528
+    }
+  },
+  "aosp_partial_update_projection_from_source_properties": {
+    "full": {
+      "explicit_payload": [
+        "product",
+        "system",
+        "system_ext",
+        "vbmeta",
+        "vbmeta_system",
+        "vendor"
+      ],
+      "aosp_partial_implicit_static_copies": [
+        "abl",
+        "aop",
+        "aop_config",
+        "bluetooth",
+        "boot",
+        "cpucp",
+        "cpucp_dtb",
+        "devcfg",
+        "dsp",
+        "dtbo",
+        "featenabler",
+        "hyp",
+        "imagefv",
+        "init_boot",
+        "keymaster",
+        "modem",
+        "pdp",
+        "pdp_cdb",
+        "qupfw",
+        "recovery",
+        "shrm",
+        "soccp_dcd",
+        "soccp_debug",
+        "splash",
+        "spuservice",
+        "tz",
+        "uefi",
+        "uefisecapp",
+        "vendor_boot",
+        "xbl",
+        "xbl_config",
+        "xbl_ramdump"
+      ]
+    },
+    "system-only": {
+      "explicit_payload": [
+        "system",
+        "vbmeta",
+        "vbmeta_system"
+      ],
+      "aosp_partial_implicit_static_copies": [
+        "abl",
+        "aop",
+        "aop_config",
+        "bluetooth",
+        "boot",
+        "cpucp",
+        "cpucp_dtb",
+        "devcfg",
+        "dsp",
+        "dtbo",
+        "featenabler",
+        "hyp",
+        "imagefv",
+        "init_boot",
+        "keymaster",
+        "modem",
+        "pdp",
+        "pdp_cdb",
+        "qupfw",
+        "recovery",
+        "shrm",
+        "soccp_dcd",
+        "soccp_debug",
+        "splash",
+        "spuservice",
+        "tz",
+        "uefi",
+        "uefisecapp",
+        "vendor_boot",
+        "xbl",
+        "xbl_config",
+        "xbl_ramdump"
+      ]
+    }
+  },
+  "abl": {
+    "stock_image_sha256": "ded49ef2064f3d8a92320acbc4d4df414067fd0384f8744980442b2fe5850ce7",
+    "expanded_sha256": "f85b1bec7146d3b4d75fa72f3f3df803a0f1e90c9817e5890af3010dc4f4dca1",
+    "pe_sha256": "1c8c503a0c2ad97abbc12fe6094d9d89ad6e9eee090331911e9cf1e10a47c112",
+    "guided_lzma_section_file_offset": 4192,
+    "pe_offset_within_expanded_data": 184,
+    "code_reference_rvas": {
+      "unlocked_continue_diagnostic": [
+        "0x316c0",
+        "0x3190c"
+      ],
+      "unlocked_skip_verification_diagnostic": [
+        "0x30488"
+      ]
+    },
+    "static_evidence_only": true
+  },
+  "orangefox": {
+    "source_head": "a2e8ac30dbe28df75e1e7ae25e05e0619b86ee31",
+    "latest_release": "release",
+    "published_at": "2026-06-05T23:42:22Z",
+    "recovery_asset_sha256": "1d98db121bc30b680e0392483a1040b7661b5ccd94c0fadd96502ac5e19e7bfc",
+    "new_release_since_previous_review": false
+  },
+  "route_decisions": {
+    "raw_inactive_mapping": "rejected; target layout must be analyzed separately",
+    "stock_local_update_or_stock_sideload": "candidate update signing keys not trusted by stock stores",
+    "unmodified_aosp_partial_update": "violates excluded-physical-partition write scope",
+    "nine_image_nonpartial_snapshot_payload": "design option only; trusted updater, image identity, space, recovery and behavior validation required",
+    "edl_restore": "no matched programmer or demonstrated restore route established"
+  },
+  "ota_trust_control": {
+    "candidate_signature_valid_under_own_key": true,
+    "candidate_signature_rejected_by_stock_ota_key": true,
+    "synthetic_message_only_not_ota_package": true
+  },
+  "immutable_source_pins_verified": {
+    "update_metadata.proto": true,
+    "delta_performer.cc": true,
+    "partition_update_generator_android.cc": true,
+    "dynamic_partition_control_android.cc": true,
+    "payload_verifier.cc": true,
+    "update_attempter_android.cc": true,
+    "avb_slot_verify.c": true,
+    "fs_avb.cpp": true,
+    "avb_util.cpp": true,
+    "snapshot.cpp": true,
+    "recovery-install.cpp": true,
+    "recovery-verifier.cpp": true
+  }
+}

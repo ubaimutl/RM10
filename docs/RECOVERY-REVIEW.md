@@ -3,6 +3,16 @@
 Reviewed on 19 October 2026. These are measurements of a public recovery
 artifact and the pinned EU firmware inputs, not a phone test.
 
+Follow-up on 21 October: source HEAD is now
+`a2e8ac30dbe28df75e1e7ae25e05e0619b86ee31`; README and BoardConfig are
+unchanged from the previous inspection and the latest published image is
+still the same June artifact. Extracting the pinned **stock** recovery
+ramdisk also finds ext4 declarations for dynamic images that are EROFS.
+Consequently that textual mismatch alone is not evidence that OrangeFox is
+less compatible than stock; actual behavior still needs validation.
+Additional OTA signature, snapshot-fallback and restore-tool findings are in
+[OFFLINE-TEST-PATH.md](OFFLINE-TEST-PATH.md).
+
 ## Artifact identity
 
 - Project: [plompomg/rm10pro-orangefox-recovery](https://github.com/plompomg/rm10pro-orangefox-recovery).
